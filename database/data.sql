@@ -1,1 +1,1 @@
-insert into "memories" ("location", "date", "favoriteMoments")
+insert into "memories" ("placeVisited", "date", "favoriteMoments")

@@ -19,16 +19,16 @@ const db = new pg.Pool({
 });
 
 app.post('/api/memories', (req, res, next) => {
-  const { location, date, favoriteMoments } = req.body;
-  if (!location || !date) {
+  const { placeVisited, date, favoriteMoments } = req.body;
+  if (!placeVisited || !date) {
     throw new ClientError(400, 'location and date are required fields');
   }
   const sql = `
-    insert into "memories" ("location", "date", "favoriteMoments")
+    insert into "memories" ("placeVisited", "date", "favoriteMoments")
     values ($1, $2, $3)
     returning *
   `;
-  const params = [location, date, favoriteMoments];
+  const params = [placeVisited, date, favoriteMoments];
   db.query(sql, params)
     .then(result => {
       const [memory] = result.rows;

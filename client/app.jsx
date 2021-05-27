@@ -1,8 +1,14 @@
 import React from 'react';
-import Home from './pages/home';
+import NewEntry from './pages/new-entry';
+import Header from './pages/header';
 
 export default class App extends React.Component {
   render() {
-    return <Home />;
+    return (
+    <div className="main-container">
+      <Header text="New Entry" />
+        <NewEntry />
+    </div>
+    );
   }
 }

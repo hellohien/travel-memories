@@ -8,7 +8,7 @@ create schema "public";
 
 create table "memories"(
   "memoryId"         serial,
-  "location"         varchar(255)   not null,
+  "placeVisited"     varchar(255)   not null,
   "date"             date           not null,
   "favoriteMoments"  varchar(255)   null,
   "createdAt"        timestamptz(6) not null default now(),
