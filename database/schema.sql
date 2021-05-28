@@ -11,6 +11,8 @@ create table "memories"(
   "placeVisited"     text           not null,
   "date"             date           not null,
   "favoriteMoments"  text           null,
+  "lat"              decimal(8,6)   null,
+  "long"             decimal(9,6)   null,
   "createdAt"        timestamptz(6) not null default now(),
   "updatedAt"        timestamptz(6) not null default now(),
   primary key ("memoryId")
