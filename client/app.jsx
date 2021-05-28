@@ -11,6 +11,18 @@ export default class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.getAllMemories();
+  }
+
+  getAllMemories() {
+    fetch('/api/memories')
+      .then(res => res.json())
+      .then(memories => this.setState({ memories }))
+      /* eslint-disable no-console */
+      .catch(err => console.log('Fetch failed', err));
+  }
+
   addMemory(newMemory) {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
@@ -25,7 +37,8 @@ export default class App extends React.Component {
         const updatedMemories = this.state.memories.slice();
         updatedMemories.push(memory);
         this.setState({ memories: updatedMemories });
-      });
+      })
+      .catch(err => console.log('Fetch failed', err));
   }
 
   render() {
