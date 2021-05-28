@@ -1,0 +1,76 @@
+:focus {
+  outline: none;
+}
+
+h1,
+h2,
+button {
+  padding: 0.2rem;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  letter-spacing: 2.5px;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+a,
+button,
+header h1 {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover:not(:first-child),
+a:focus:not(:first-child) {
+  text-decoration: underline;
+}
+
+form {
+  margin: 0 1rem;
+}
+
+label,
+input {
+  width: 100%;
+}
+
+input {
+  background: none;
+  border: 0;
+  border-bottom: 0.5px solid rgb(170, 170, 170);
+}
+
+input:focus {
+  border-bottom: 1.5px solid rgb(26, 26, 26);
+}
+
+label {
+  margin: 0.4rem;
+}
+
+button {
+  border-radius: 4px;
+}
+
+.submit-button-wrapper {
+  float: right;
+}
+
+.submit-button-wrapper button {
+  border: 2px solid rgb(170, 170, 170);
+  padding: 0.4rem 1.6rem;
+}
+
+button:hover,
+button:focus {
+  border-color: rgb(26, 26, 26);
+}
