@@ -1,5 +1,6 @@
 import React from 'react';
 import TravelDiary from './pages/travel-diary';
+import Header from './pages/header';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -44,8 +45,10 @@ export default class App extends React.Component {
   render() {
     return (
       <>
+        <Header />
         <TravelDiary
           onSubmit={this.addMemory}
+          memories={this.state.memories}
         />
       </>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PageTitle from './page-title';
 import TravelEntry from './travel-entry';
+import TravelMap from './travel-map';
 
 export default class TravelDiary extends React.Component {
   constructor(props) {
@@ -56,6 +57,9 @@ export default class TravelDiary extends React.Component {
         handleChange={this.handleChange}
         date={this.state.date}
         favoriteMoments={this.state.favoriteMoments}
+      />
+      <TravelMap
+        memories={this.props.memories}
       />
     </>
     );
