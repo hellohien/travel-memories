@@ -39,9 +39,17 @@ a {
   text-decoration: none;
 }
 
+header a {
+  margin: 0 0.2rem;
+}
+
 a:hover:not(:first-child),
 a:focus:not(:first-child) {
   text-decoration: underline;
+}
+
+.page-title {
+  text-align: center;
 }
 
 form {
@@ -92,4 +100,28 @@ button:focus {
 
 .mapboxgl-marker {
   font-size: 1.8rem;
+}
+
+.sticky-note-wrapper {
+  position: relative;
+}
+
+.sticky-note {
+  text-align: center;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  background-color: #fbfcd0;
+  width: 200px;
+  height: 180px;
+  margin: 0.9rem;
+}
+
+.tape {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  width: 70px;
+  height: 15px;
+  background-color: rgb(255, 255, 255);
+  transform: rotate(-25deg);
 }

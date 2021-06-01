@@ -4,10 +4,13 @@ export default class TravelEntry extends React.Component {
   render() {
     const { placeVisited, date, favoriteMoments } = this.props;
     return (
-      <div>
-        <h1>{placeVisited}</h1>
-        <p>{date}</p>
-        <p>{favoriteMoments}</p>
+      <div className="sticky-note-wrapper">
+        <div className="sticky-note">
+          <div className="tape"></div>
+          <h3>{placeVisited}</h3>
+          <p>{date}</p>
+          <p>{favoriteMoments}</p>
+        </div>
       </div>
     );
   }
