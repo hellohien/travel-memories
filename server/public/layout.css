@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap');
-
 @font-face {
   font-family: 'Helvetica Neue';
   src: local('Helvetica Neue'), url(./fonts/helvetica-neue-thin.ttf) format('truetype');
@@ -7,7 +5,6 @@
 
 body {
   font-size: 0.8rem;
-  letter-spacing: 0.5px;
 }
 
 body,
@@ -16,6 +13,7 @@ button,
 a {
   font-family: 'Helvetica Neue', sans-serif;
   color: rgb(32, 32, 32);
+  letter-spacing: 0.5px;
 }
 
 body,
@@ -45,35 +43,21 @@ header {
   margin: 1.2rem;
 }
 
-header h1,
-header h2 {
-  margin: 0;
-  padding: 0;
-}
-
-.logo {
-  color: #c03e32;
-  font-size: 1.2rem;
-  margin: 0 0.2rem;
-}
-
 @media screen and (min-width: 768px) {
   .row,
   header {
     margin: 1.6rem;
   }
 
-  label {
+  label,
+  p {
     margin: 0.6rem;
-  }
-
-  form {
-    margin: 0 5rem;
   }
 }
 
 @media screen and (min-width: 992px) {
-  .main-container {
+  .main-container,
+  #map > div {
     max-width: 1200px;
   }
 }

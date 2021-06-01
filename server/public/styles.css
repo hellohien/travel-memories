@@ -2,21 +2,31 @@
   outline: none;
 }
 
-h1,
-h2,
-button {
-  padding: 0.2rem;
-  text-transform: uppercase;
-}
-
 h1 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.4rem;
   letter-spacing: 2.5px;
 }
 
+h1,
 h2 {
-  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+label {
+  margin: 0.3rem;
+}
+
+.logo {
+  font-size: 1.2rem;
+  margin: 0 0.2rem;
+}
+
+.logo,
+.marker {
+  color: #c03e32;
 }
 
 a,
@@ -35,11 +45,19 @@ a:focus:not(:first-child) {
 }
 
 form {
-  margin: 0 1rem;
+  width: 85%;
+  margin: 0 auto;
+}
+
+form,
+#map > div {
+  border: 2px solid rgb(170, 170, 170);
+  border-radius: 8px;
 }
 
 label,
-input {
+input,
+.submit-button-wrapper > button {
   width: 100%;
 }
 
@@ -53,24 +71,25 @@ input:focus {
   border-bottom: 1.5px solid rgb(26, 26, 26);
 }
 
-label {
-  margin: 0.4rem;
-}
-
-button {
-  border-radius: 4px;
-}
-
-.submit-button-wrapper {
-  float: right;
-}
-
 .submit-button-wrapper button {
-  border: 2px solid rgb(170, 170, 170);
+  border-radius: 4px;
   padding: 0.4rem 1.6rem;
+  background-color: rgb(221, 221, 221);
+  border: none;
+  transition: background-color 0.2s ease-in;
 }
 
 button:hover,
 button:focus {
-  border-color: rgb(26, 26, 26);
+  background-color: rgb(206, 206, 206);
+}
+
+#map > div {
+  padding: 0.6rem;
+  margin: 1rem auto;
+  position: relative;
+}
+
+.mapboxgl-marker {
+  font-size: 1.8rem;
 }
