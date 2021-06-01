@@ -1,12 +1,15 @@
 import React from 'react';
 import TravelDiary from './pages/travel-diary';
-import Header from './pages/header';
+import Header from './components/header';
+import parseRoute from './lib/parse-route';
+import TravelMemories from './pages/travel-memories';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      memories: []
+      memories: [],
+      route: parseRoute(window.location.hash)
     };
     this.addMemory = this.addMemory.bind(this);
 
@@ -14,6 +17,25 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getAllMemories();
+    window.addEventListener('hashchange', () => {
+      const route = parseRoute(window.location.hash);
+      this.setState({ route });
+    });
+  }
+
+  renderPage() {
+    const { route } = this.state;
+    if (!route.path || route.path === 'addEntry') {
+      return <TravelDiary
+                onSubmit={this.addMemory}
+                memories={this.state.memories}
+              />;
+    }
+    if (route.path === 'myMemories') {
+      return <TravelMemories
+                memories={this.state.memories}
+              />;
+    }
   }
 
   getAllMemories() {
@@ -46,10 +68,7 @@ export default class App extends React.Component {
     return (
       <div className="main-container">
         <Header />
-        <TravelDiary
-          onSubmit={this.addMemory}
-          memories={this.state.memories}
-        />
+        {this.renderPage()}
       </div>
     );
   }

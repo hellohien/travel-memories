@@ -1,6 +1,6 @@
 import React from 'react';
-import PageTitle from './page-title';
-import TravelEntry from './travel-entry';
+import PageTitle from '../components/page-title';
+import TravelForm from './travel-form';
 import TravelMap from './travel-map';
 
 export default class TravelDiary extends React.Component {
@@ -51,7 +51,7 @@ export default class TravelDiary extends React.Component {
     return (
     <>
       <PageTitle title="Enter a Travel Memory" titleDescription="and see it plot on the map!"/>
-      <TravelEntry
+      <TravelForm
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}
         handleChange={this.handleChange}

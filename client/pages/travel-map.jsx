@@ -19,7 +19,7 @@ export default class TravelMap extends React.Component {
   }
 
   render() {
-    const memories = this.props.memories;
+    const { memories } = this.props;
     return (
       <div id="map">
         <ReactMapGL
@@ -30,11 +30,11 @@ export default class TravelMap extends React.Component {
           mapStyle="mapbox://styles/hnguy179/ckp8w87hp09u317o0irqictao"
           onViewportChange={this.handleViewportChange}
         >
-        {this.props.memories.map((location, index) => (
+        {memories.map(memory => (
           <Marker
-            key={memories[index].memoryId}
-            latitude={parseFloat(memories[index].lat)}
-            longitude={parseFloat(memories[index].long)}
+            key={memory.memoryId}
+            latitude={parseFloat(memory.lat)}
+            longitude={parseFloat(memory.long)}
             offsetLeft={-5} offsetTop={-20}
             >
             <div className="marker">

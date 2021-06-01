@@ -29,26 +29,26 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  flex-wrap: wrap;
 }
 
 .column-full {
   flex-direction: column;
 }
 
+.row,
+header {
+  width: 90%;
+  margin: 1.2rem auto;
+}
+
 header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin: 1.2rem;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
-  .row,
-  header {
-    margin: 1.6rem;
-  }
-
   label,
   p {
     margin: 0.6rem;
