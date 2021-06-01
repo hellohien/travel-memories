@@ -50,7 +50,7 @@ export default class TravelDiary extends React.Component {
   render() {
     return (
     <>
-      <PageTitle text="New Entry" />
+      <PageTitle title="Enter a Travel Memory" titleDescription="and see it plot on the map!"/>
       <TravelEntry
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}

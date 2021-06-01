@@ -6,32 +6,37 @@ export default class TravelMap extends React.Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 47.7511,
-        longitude: 120.7401,
-        width: '80vw',
-        height: '50vh',
-        zoom: 1
-      },
-      selectedPlace: null,
-      setSelectedPlace: null
+        latitude: 37.7749,
+        longitude: 122.4194,
+        zoom: 5
+      }
     };
+    this.handleViewportChange = this.handleViewportChange.bind(this);
+  }
+
+  handleViewportChange(viewport) {
+    this.setState({ viewport });
   }
 
   render() {
     const memories = this.props.memories;
     return (
-      <div>
+      <div id="map">
         <ReactMapGL
           {...this.state.viewport}
+          height='450px'
+          width='85%'
           mapboxApiAccessToken={'pk.eyJ1IjoiaG5ndXkxNzkiLCJhIjoiY2twMnFzYWN4MDU5OTJ4cWxhM3E2eGx3ayJ9.KPU6AqAdzJw80HNFYpe2Cg'}
           mapStyle="mapbox://styles/hnguy179/ckp8w87hp09u317o0irqictao"
-          onViewportChange={viewport => this.setState({ viewport })}
+          onViewportChange={this.handleViewportChange}
         >
         {this.props.memories.map((location, index) => (
           <Marker
             key={memories[index].memoryId}
-            latitude={parseInt(memories[index].lat)}
-            longitude={parseInt(this.props.memories[index].long)}>
+            latitude={parseFloat(memories[index].lat)}
+            longitude={parseFloat(memories[index].long)}
+            offsetLeft={-5} offsetTop={-20}
+            >
             <div className="marker">
               <i className="fa fa-map-marker"></i>
             </div>

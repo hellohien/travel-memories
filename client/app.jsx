@@ -44,13 +44,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="main-container">
         <Header />
         <TravelDiary
           onSubmit={this.addMemory}
           memories={this.state.memories}
         />
-      </>
+      </div>
     );
   }
 }
