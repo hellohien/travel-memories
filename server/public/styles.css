@@ -43,8 +43,9 @@ header a {
   margin: 0 0.2rem;
 }
 
-a:hover:not(:first-child),
-a:focus:not(:first-child) {
+.nav a:hover,
+.nav a:focus,
+.nav a:visited {
   text-decoration: underline;
 }
 
