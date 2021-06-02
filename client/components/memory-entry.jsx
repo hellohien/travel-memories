@@ -6,8 +6,8 @@ export default class MemoryEntry extends React.Component {
     const { placeVisited, favoriteMoments } = this.props;
     let { date } = this.props;
     date = date.slice(0, 10);
-    const newDate = parse(date, 'yyyy-mm-dd', new Date());
-    const formattedDate = format(newDate, 'MMM dd, yyyy');
+    const parsedDate = parse(date, 'yyyy-mm-dd', new Date());
+    const formattedDate = format(parsedDate, 'mm-dd-yyyy');
     return (
         <div className="sticky-note">
           <div className="tape"></div>
