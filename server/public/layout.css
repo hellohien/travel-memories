@@ -54,7 +54,7 @@ header {
     margin: 0.6rem;
   }
 
-  h1 {
+  h1:not(header h1) {
     font-size: 1.8rem;
   }
 }

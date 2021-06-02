@@ -1,9 +1,9 @@
 import React from 'react';
 import PageTitle from '../components/page-title';
-import TravelForm from './travel-form';
-import TravelMap from './travel-map';
+import MemoryForm from '../components/memory-form';
+import MemoryMap from '../components/memory-map';
 
-export default class TravelDiary extends React.Component {
+export default class AddEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,14 +51,14 @@ export default class TravelDiary extends React.Component {
     return (
     <>
       <PageTitle title="Enter a Travel Memory" titleDescription="and see it plot on the map!"/>
-      <TravelForm
+        <MemoryForm
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}
         handleChange={this.handleChange}
         date={this.state.date}
         favoriteMoments={this.state.favoriteMoments}
       />
-      <TravelMap
+        <MemoryMap
         memories={this.props.memories}
       />
     </>
