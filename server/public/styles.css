@@ -9,7 +9,8 @@ h1 {
 }
 
 h1,
-h2 {
+h2,
+input {
   margin: 0;
   padding: 0;
 }
@@ -40,12 +41,11 @@ a {
 }
 
 header a {
-  margin: 0 0.2rem;
+  margin: 0 0.3rem;
 }
 
 .nav a:hover,
-.nav a:focus,
-.nav a:visited {
+.nav a:focus {
   text-decoration: underline;
 }
 
@@ -80,12 +80,22 @@ input:focus {
   border-bottom: 1.5px solid rgb(26, 26, 26);
 }
 
+input[type=date]:invalid,
+.no-entries-found {
+  color: rgb(129, 129, 129);
+}
+
 .submit-button-wrapper button {
   border-radius: 4px;
   padding: 0.4rem 1.6rem;
   background-color: rgb(221, 221, 221);
   border: none;
   transition: background-color 0.2s ease-in;
+}
+
+.submit-button-wrapper button,
+.search-box input {
+  box-shadow: 2px 3px 4px rgb(197, 197, 197);
 }
 
 button:hover,
@@ -119,10 +129,22 @@ button:focus {
 
 .tape {
   position: absolute;
-  top: 1rem;
+  top: 1.2rem;
   left: 0;
-  width: 70px;
+  width: 80px;
   height: 15px;
   background-color: rgb(255, 255, 255);
   transform: rotate(-25deg);
+}
+
+.search-box input {
+  border-bottom: none;
+  border: 1px solid rgb(170, 170, 170);
+  width: 50%;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+}
+
+.search-box input:focus {
+  border: 1.5px solid rgb(26, 26, 26);
 }

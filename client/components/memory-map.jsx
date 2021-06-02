@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
 
-export default class TravelMap extends React.Component {
+export default class MemoryMap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

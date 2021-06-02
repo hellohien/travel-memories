@@ -1,7 +1,7 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 
-export default class TravelAddEntry extends React.Component {
+export default class MemoryForm extends React.Component {
   render() {
     const { onSubmit, handleChange } = this.props;
     const { date } = this.props;
@@ -12,12 +12,15 @@ export default class TravelAddEntry extends React.Component {
           <label htmlFor="placeVisited">Place visited:</label>
           <Autocomplete
             id="placeVisited"
-            placeholder=""
+            placeholder="Enter a location"
             apiKey={'AIzaSyCOMIu6UeiRMCLPu4VHGcVv89lFkRV-mgI'}
             onPlaceSelected={place => {
               this.props.autocompleteInput(place);
             }}
             types={['(regions)']}
+            onFocus={event => {
+              event.target.setAttribute('autocomplete', 'off');
+            }}
           />
         </div>
         <div className="row column-full">

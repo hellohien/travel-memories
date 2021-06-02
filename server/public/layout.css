@@ -53,6 +53,10 @@ header {
   p {
     margin: 0.6rem;
   }
+
+  h1:not(header h1) {
+    font-size: 1.8rem;
+  }
 }
 
 @media screen and (min-width: 992px) {

@@ -1,8 +1,8 @@
 import React from 'react';
-import TravelDiary from './pages/travel-diary';
+import AddEntry from './pages/add-entry';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import TravelMemories from './pages/travel-memories';
+import MyMemories from './pages/my-memories';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,13 +26,13 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (!route.path || route.path === 'addEntry') {
-      return <TravelDiary
+      return <AddEntry
                 onSubmit={this.addMemory}
                 memories={this.state.memories}
               />;
     }
     if (route.path === 'myMemories') {
-      return <TravelMemories
+      return <MyMemories
                 memories={this.state.memories}
               />;
     }
