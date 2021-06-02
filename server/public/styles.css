@@ -40,7 +40,7 @@ a {
 }
 
 header a {
-  margin: 0 0.2rem;
+  margin: 0 0.3rem;
 }
 
 .nav a:hover,
@@ -125,4 +125,16 @@ button:focus {
   height: 15px;
   background-color: rgb(255, 255, 255);
   transform: rotate(-25deg);
+}
+
+.search-box input {
+  border-bottom: none;
+  border: 1px solid rgb(170, 170, 170);
+  width: 50%;
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+}
+
+.search-box input:focus {
+  border: 1.5px solid rgb(26, 26, 26);
 }
