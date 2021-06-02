@@ -45,8 +45,7 @@ header a {
 }
 
 .nav a:hover,
-.nav a:focus,
-.nav a:visited {
+.nav a:focus {
   text-decoration: underline;
 }
 
@@ -130,7 +129,7 @@ button:focus {
 
 .tape {
   position: absolute;
-  top: 1.3rem;
+  top: 1.2rem;
   left: 0;
   width: 80px;
   height: 15px;

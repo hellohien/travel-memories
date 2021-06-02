@@ -39,8 +39,7 @@ app.post('/api/memories', (req, res, next) => {
 
 app.get('/api/memories', (req, res, next) => {
   const sql = `
-    select *,
-    to_char(date, 'MM-DD-YYYY') as date
+    select *
     from "memories"
   `;
   db.query(sql)
