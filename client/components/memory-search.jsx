@@ -1,17 +1,35 @@
 import React from 'react';
 import MemoryEntry from '../components/memory-entry';
+import DeleteModal from './delete-modal';
 
 export default class MemorySearch extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      showModal: false,
+      show: false
     };
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleInputValueChange(event) {
     this.setState({ inputValue: event.target.value });
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
+  handleClick(event) {
+    this.setState({ showModal: !this.state.showModal });
   }
 
   render() {
@@ -41,6 +59,7 @@ export default class MemorySearch extends React.Component {
                   return (
                   <div className="sticky-note-wrapper" key={key}>
                     <MemoryEntry
+                      handleClick={this.handleClick}
                       key={memory.memoryId}
                       placeVisited={memory.placeVisited}
                       date={memory.date}
@@ -50,6 +69,7 @@ export default class MemorySearch extends React.Component {
                   );
                 })
               }
+            {this.state.showModal ? <DeleteModal /> : null}
           </div>
         }
       </>

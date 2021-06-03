@@ -29,7 +29,7 @@ export default class MemoryForm extends React.Component {
         </div>
         <div className="row column-full">
           <label htmlFor="favoriteMoments">Favorite moments:</label>
-          <input value={favoriteMoments} onChange={handleChange} id="favoriteMoments" type="text" name="favoriteMoments" maxLength="65"></input>
+          <input value={favoriteMoments} onChange={handleChange} id="favoriteMoments" type="text" name="favoriteMoments" maxLength="100"></input>
         </div>
         <div className="row column-full submit-button-wrapper">
           <button>Submit</button>

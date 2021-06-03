@@ -81,7 +81,8 @@ input:focus {
 }
 
 input[type=date]:invalid,
-.no-entries-found {
+.no-entries-found,
+.delete-icon {
   color: rgb(129, 129, 129);
 }
 
@@ -98,8 +99,8 @@ input[type=date]:invalid,
   box-shadow: 2px 3px 4px rgb(197, 197, 197);
 }
 
-button:hover,
-button:focus {
+.submit-button-wrapper button:hover,
+.submit-button-wrapper button:focus {
   background-color: rgb(206, 206, 206);
 }
 
@@ -147,4 +148,54 @@ button:focus {
 
 .search-box input:focus {
   border: 1.5px solid rgb(26, 26, 26);
+}
+
+.delete-icon {
+  background: none;
+  border: none;
+  position: absolute;
+  right: 1.6rem;
+}
+
+.overlay {
+  background: rgba(32, 32, 32, 0.664);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.modal {
+  background: white;
+  height: auto;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.warning-icon {
+  color: rgb(240, 156, 0);
+  font-size: 3rem;
+  left: 0;
+  right: 0;
+}
+
+.delete-button,
+.cancel-button {
+  margin: 0.1rem 0.6rem;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+}
+
+.cancel-button {
+  background: rgb(175, 175, 175);
+}
+
+.delete-button {
+  background-color: #dd7e7e;
 }

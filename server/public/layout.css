@@ -3,6 +3,10 @@
   src: local('Helvetica Neue'), url(./fonts/helvetica-neue-thin.ttf) format('truetype');
 }
 
+html {
+  position: relative;
+}
+
 body {
   font-size: 0.8rem;
 }
@@ -56,6 +60,10 @@ header {
 
   h1:not(header h1) {
     font-size: 1.8rem;
+  }
+
+  .modal {
+    width: 500px;
   }
 }
 
