@@ -10,6 +10,7 @@ export default class MyMemories extends React.Component {
         <PageTitle title="My Memories"/>
         <MemorySearch
         memories={memories}
+        deleteMemory={this.props.deleteMemory}
         />
       </>
     );

@@ -25,11 +25,27 @@ export default class MemoryForm extends React.Component {
         </div>
         <div className="row column-full">
           <label htmlFor="date">Date: </label>
-          <input value={date} onChange={handleChange} id="date" type="date" name="date" required></input>
+          <input
+            value={date}
+            onChange={handleChange}
+            id="date" type="date"
+            name="date"
+            required
+          >
+          </input>
         </div>
         <div className="row column-full">
           <label htmlFor="favoriteMoments">Favorite moments:</label>
-          <input value={favoriteMoments} onChange={handleChange} id="favoriteMoments" type="text" name="favoriteMoments" maxLength="100"></input>
+          <input
+            value={favoriteMoments}
+            onChange={handleChange}
+            id="favoriteMoments"
+            type="text"
+            name="favoriteMoments"
+            maxLength="80"
+            autoComplete="off"
+            >
+          </input>
         </div>
         <div className="row column-full submit-button-wrapper">
           <button>Submit</button>
