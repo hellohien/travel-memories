@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class DeleteModal extends React.Component {
+export default class Modal extends React.Component {
   render() {
     return (
       <div className="modal-container overlay">
@@ -10,7 +10,7 @@ export default class DeleteModal extends React.Component {
             <h3>Are you sure you want to delete this memory?</h3>
           </div>
           <div>
-            <button className="cancel-button">Cancel</button>
+            <button onClick={this.props.handleClick} className="cancel-button">Cancel</button>
             <button className="delete-button">Delete</button>
           </div>
         </div>

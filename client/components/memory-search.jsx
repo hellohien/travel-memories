@@ -1,34 +1,28 @@
 import React from 'react';
 import MemoryEntry from '../components/memory-entry';
-import DeleteModal from './delete-modal';
+import Modal from './modal';
 
 export default class MemorySearch extends React.Component {
   constructor(props) {
     super();
     this.state = {
       inputValue: '',
-      showModal: false,
-      show: false
+      showModal: false
     };
     this.handleInputValueChange = this.handleInputValueChange.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleShow = this.handleShow.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.toggleTrueFalse = this.toggleTrueFalse.bind(this);
   }
 
   handleInputValueChange(event) {
     this.setState({ inputValue: event.target.value });
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
-  }
-
   handleClick(event) {
+    this.toggleTrueFalse();
+  }
+
+  toggleTrueFalse() {
     this.setState({ showModal: !this.state.showModal });
   }
 
@@ -64,12 +58,13 @@ export default class MemorySearch extends React.Component {
                       placeVisited={memory.placeVisited}
                       date={memory.date}
                       favoriteMoments={memory.favoriteMoments}
+                      memory={memory}
                     />
                   </div>
                   );
                 })
               }
-            {this.state.showModal ? <DeleteModal /> : null}
+            {this.state.showModal ? <Modal handleClick={this.handleClick} /> : null}
           </div>
         }
       </>

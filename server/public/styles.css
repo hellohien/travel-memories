@@ -87,7 +87,6 @@ input[type=date]:invalid,
 }
 
 .submit-button-wrapper button {
-  border-radius: 4px;
   padding: 0.4rem 1.6rem;
   background-color: rgb(221, 221, 221);
   border: none;
@@ -95,7 +94,15 @@ input[type=date]:invalid,
 }
 
 .submit-button-wrapper button,
-.search-box input {
+.delete-button,
+.cancel-button {
+  border-radius: 4px;
+}
+
+.submit-button-wrapper button,
+.search-box input,
+.delete-button,
+.cancel-button {
   box-shadow: 2px 3px 4px rgb(197, 197, 197);
 }
 
@@ -175,6 +182,7 @@ input[type=date]:invalid,
   height: auto;
   text-align: center;
   padding: 2rem 0;
+  box-shadow: 8px 8px 8px rgb(65, 65, 65);
 }
 
 .warning-icon {
@@ -190,12 +198,23 @@ input[type=date]:invalid,
   color: white;
   border: none;
   padding: 0.4rem 1rem;
+  width: 90px;
 }
 
 .cancel-button {
   background: rgb(175, 175, 175);
 }
 
+.cancel-button:hover,
+.cancel-button:focus {
+  background-color: rgb(126, 126, 126);
+}
+
 .delete-button {
   background-color: #dd7e7e;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+  background-color: #dd5252;
 }

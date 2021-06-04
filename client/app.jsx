@@ -12,7 +12,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.addMemory = this.addMemory.bind(this);
-
+    // this.deleteMemory = this.deleteMemory.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +34,8 @@ export default class App extends React.Component {
     if (route.path === 'myMemories') {
       return <MyMemories
                 memories={this.state.memories}
+                deleteMemory={this.deleteMemory}
+                // onClick of delete button -> call handleClick={this.deleteMemory}
               />;
     }
   }
@@ -63,6 +65,11 @@ export default class App extends React.Component {
       })
       .catch(err => console.log('Fetch failed', err));
   }
+
+  // deleteMemory(memoryId) {
+  //   const matchingMemory = this.state.memories.filter(memory => memory.id === memoryId)[0];
+  //   console.log(matchingMemory);
+  // }
 
   render() {
     return (

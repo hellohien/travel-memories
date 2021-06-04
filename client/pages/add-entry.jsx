@@ -60,7 +60,7 @@ export default class AddEntry extends React.Component {
       />
         <MemoryMap
         memories={this.props.memories}
-      />
+        />
     </>
     );
   }
