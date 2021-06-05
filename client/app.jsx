@@ -12,7 +12,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.addMemory = this.addMemory.bind(this);
-
+    this.deleteMemory = this.deleteMemory.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +34,7 @@ export default class App extends React.Component {
     if (route.path === 'myMemories') {
       return <MyMemories
                 memories={this.state.memories}
+                deleteMemory={this.deleteMemory}
               />;
     }
   }
@@ -59,6 +60,25 @@ export default class App extends React.Component {
       .then(memory => {
         const updatedMemories = this.state.memories.slice();
         updatedMemories.push(memory);
+        this.setState({ memories: updatedMemories });
+      })
+      .catch(err => console.log('Fetch failed', err));
+  }
+
+  deleteMemory(memoryId) {
+    const index = this.state.memories.findIndex(memory => memory.memoryId === memoryId);
+    const headers = new Headers();
+    const bodyJSON = JSON.stringify(this.state.memories[index]);
+    headers.set('Content-Type', 'application/json');
+    fetch(`/api/memories/${memoryId}`, {
+      method: 'DELETE',
+      headers,
+      body: bodyJSON
+    })
+      .then(res => res.json())
+      .then(memory => {
+        const updatedMemories = this.state.memories.slice();
+        updatedMemories.splice(index, 1);
         this.setState({ memories: updatedMemories });
       })
       .catch(err => console.log('Fetch failed', err));

@@ -3,7 +3,7 @@ import MemoryEntry from '../components/memory-entry';
 
 export default class MemorySearch extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       inputValue: ''
     };
@@ -24,19 +24,15 @@ export default class MemorySearch extends React.Component {
             type="text"
             placeholder="Search by location.."
             onChange={this.handleInputValueChange}
-        />
-      </div>
+          />
+        </div>
         {memories.length === 0
           ? <div className="row no-entries-found">No entries to show</div>
           : <div className="row">
                 {memories.filter(memory => {
-                  if (inputValue === '') {
-                    return memory;
-                  } else if (memory.placeVisited.toLowerCase().includes(inputValue.toLowerCase())) {
-                    return memory;
-                  } else {
-                    return false;
-                  }
+                  if (inputValue === '') return memory;
+                  else if (memory.placeVisited.toLowerCase().includes(inputValue.toLowerCase())) return memory;
+                  else return false;
                 }).map((memory, key) => {
                   return (
                   <div className="sticky-note-wrapper" key={key}>
@@ -45,12 +41,13 @@ export default class MemorySearch extends React.Component {
                       placeVisited={memory.placeVisited}
                       date={memory.date}
                       favoriteMoments={memory.favoriteMoments}
+                      memory={memory}
+                      deleteMemory={this.props.deleteMemory}
                     />
                   </div>
                   );
-                })
-              }
-          </div>
+                })}
+            </div>
         }
       </>
     );

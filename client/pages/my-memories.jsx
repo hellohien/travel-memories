@@ -8,7 +8,10 @@ export default class MyMemories extends React.Component {
     return (
       <>
         <PageTitle title="My Memories"/>
-        <MemorySearch memories={memories}/>
+        <MemorySearch
+        memories={memories}
+        deleteMemory={this.props.deleteMemory}
+        />
       </>
     );
   }

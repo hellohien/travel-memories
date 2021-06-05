@@ -49,6 +49,25 @@ app.get('/api/memories', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/memories/:memoryId', (req, res, next) => {
+  const memoryId = parseInt(req.params.memoryId, 10);
+  if (!Number.isInteger(memoryId) || memoryId < 1) {
+    throw new ClientError(400, 'memoryId must be a positive integer');
+  }
+  const sql = `
+    delete from "memories"
+    where "memoryId" = $1
+    returning *
+  `;
+  const params = [memoryId];
+  db.query(sql, params)
+    .then(result => {
+      const [memory] = result.rows;
+      res.json(memory);
+    })
+    .catch(err => (err));
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
