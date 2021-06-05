@@ -66,11 +66,7 @@ export default class App extends React.Component {
   }
 
   deleteMemory(memoryId) {
-    let index = null;
-    this.state.memories.map((memory, i) => {
-      if (memory.memoryId === memoryId) index = i;
-      return index;
-    });
+    const index = this.state.memories.findIndex(memory => memory.memoryId === memoryId);
     const headers = new Headers();
     const bodyJSON = JSON.stringify(this.state.memories[index]);
     headers.set('Content-Type', 'application/json');
