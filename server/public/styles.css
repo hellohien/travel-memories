@@ -17,7 +17,7 @@ input {
 
 p,
 label {
-  margin: 0.3rem;
+  margin: 0.5rem;
 }
 
 .logo {
@@ -40,14 +40,33 @@ a {
   text-decoration: none;
 }
 
-header a {
-  margin: 0 0.3rem;
+.nav-link {
+  position: relative;
+  margin: 0.2rem;
+  padding: 0.2rem;
   font-weight: bold;
 }
 
-.nav a:hover,
-.nav a:focus {
-  text-decoration: underline;
+.nav-link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #3e3e3e;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.nav-link:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.nav-link:visited {
+  visibility: hidden;
 }
 
 .page-title {
@@ -75,7 +94,6 @@ input {
   background: none;
   border: 0;
   border-bottom: 0.5px solid rgb(170, 170, 170);
-  font-size: 1rem;
 }
 
 input:focus {
@@ -166,6 +184,11 @@ input[type=date]:invalid,
   right: 1.6rem;
 }
 
+.delete-icon:hover,
+.delete-icon:focus {
+  color: rgb(50, 50, 50);
+}
+
 .overlay {
   background: rgba(32, 32, 32, 0.664);
   display: flex;
@@ -180,7 +203,7 @@ input[type=date]:invalid,
 }
 
 .modal {
-  background: white;
+  background: rgb(242, 242, 242);
   height: auto;
   text-align: center;
   padding: 2rem 0;
@@ -189,7 +212,7 @@ input[type=date]:invalid,
 
 .warning-icon {
   color: rgb(240, 156, 0);
-  font-size: 3rem;
+  font-size: 4rem;
   left: 0;
   right: 0;
 }
@@ -207,13 +230,13 @@ input[type=date]:invalid,
   background: rgb(175, 175, 175);
 }
 
-.cancel-button:hover,
-.cancel-button:focus {
-  background-color: rgb(126, 126, 126);
+.delete-button {
+  background-color: #dc7575;
 }
 
-.delete-button {
-  background-color: #dd7e7e;
+.cancel-button:hover,
+.cancel-button:focus {
+  background-color: rgb(143, 143, 143);
 }
 
 .delete-button:hover,

@@ -5,8 +5,8 @@ export default function Header(props) {
     <header>
       <a href="#"><h1><i className="logo fa fa-map-marker" aria-hidden="true"></i>TM</h1></a>
       <div className="nav">
-        <a href="#addEntry">Add Entry</a>
-        <a href="#myMemories">My Memories</a>
+        <a className="nav-link" href="#addEntry">Add Entry</a>
+        <a className="nav-link" href="#myMemories">My Memories</a>
       </div>
     </header>
   );
