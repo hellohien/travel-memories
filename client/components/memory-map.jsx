@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
 export default class MemoryMap extends React.Component {
   constructor(props) {
@@ -8,18 +8,25 @@ export default class MemoryMap extends React.Component {
       viewport: {
         latitude: 37.7749,
         longitude: 122.4194,
-        zoom: 5
-      }
+        zoom: 0
+      },
+      selectedLocation: null
     };
     this.handleViewportChange = this.handleViewportChange.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleViewportChange(viewport) {
     this.setState({ viewport });
   }
 
+  handleClose() {
+    this.setState({ selectedLocation: null });
+  }
+
   render() {
     const { memories } = this.props;
+    const { selectedLocation } = this.state;
     return (
       <div id="map">
         <ReactMapGL
@@ -35,13 +42,28 @@ export default class MemoryMap extends React.Component {
             key={memory.memoryId}
             latitude={parseFloat(memory.lat)}
             longitude={parseFloat(memory.long)}
-            offsetLeft={-5} offsetTop={-20}
+            offsetLeft={-20} offsetTop={-25}
             >
-            <div className="marker">
+            <button
+              onClick={e => {
+                e.preventDefault();
+                this.setState({ selectedLocation: memory });
+              }}
+            >
               <i className="fa fa-map-marker"></i>
-            </div>
+            </button>
           </Marker>
         ))}
+        { selectedLocation
+          ? <Popup
+              latitude = {parseFloat(selectedLocation.lat)}
+              longitude = {parseFloat(selectedLocation.long)}
+              onClose = {this.handleClose}
+            >
+              <div>{selectedLocation.placeVisited}</div>
+            </Popup>
+          : null
+        }
         </ReactMapGL>
       </div>
     );

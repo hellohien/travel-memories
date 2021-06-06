@@ -50,7 +50,7 @@ export default class AddEntry extends React.Component {
   render() {
     return (
     <>
-      <PageTitle title="Enter a Travel Memory" titleDescription="and see it plot on the map!"/>
+      <PageTitle title="Enter a Travel Memory"/>
         <MemoryForm
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}
