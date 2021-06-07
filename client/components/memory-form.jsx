@@ -21,6 +21,7 @@ export default class MemoryForm extends React.Component {
             onFocus={event => {
               event.target.setAttribute('autocomplete', 'off');
             }}
+            required
           />
         </div>
         <div className="row column-full">
@@ -31,8 +32,7 @@ export default class MemoryForm extends React.Component {
             id="date" type="date"
             name="date"
             required
-          >
-          </input>
+          />
         </div>
         <div className="row column-full">
           <label htmlFor="favoriteMoments">Favorite moments:</label>
@@ -44,8 +44,7 @@ export default class MemoryForm extends React.Component {
             name="favoriteMoments"
             maxLength="80"
             autoComplete="off"
-            >
-          </input>
+            />
         </div>
         <div className="row column-full submit-button-wrapper">
           <button>Submit</button>

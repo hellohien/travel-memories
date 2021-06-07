@@ -251,7 +251,7 @@ input[type=date]:invalid,
 
 .mapboxgl-popup {
   top: -1.4rem;
-  left: 0.7rem;
+  left: 0.4rem;
 }
 
 .mapboxgl-popup-content {

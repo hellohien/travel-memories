@@ -43,12 +43,11 @@ export default class MemoryMap extends React.Component {
             latitude={parseFloat(memory.lat)}
             longitude={parseFloat(memory.long)}
             offsetLeft={-20} offsetTop={-25}
-            >
-            <button
-              onClick={e => {
-                e.preventDefault();
-                this.setState({ selectedLocation: memory });
-              }}
+          >
+            <button onClick={e => {
+              e.preventDefault();
+              this.setState({ selectedLocation: memory });
+            }}
             >
               <i className="fa fa-map-marker"></i>
             </button>
@@ -68,5 +67,4 @@ export default class MemoryMap extends React.Component {
       </div>
     );
   }
-
 }
