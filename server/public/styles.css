@@ -4,7 +4,7 @@
 
 h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   letter-spacing: 2.5px;
 }
 
@@ -20,16 +20,6 @@ label {
   margin: 0.5rem;
 }
 
-.logo {
-  font-size: 1.2rem;
-  margin: 0 0.2rem;
-}
-
-.logo,
-.marker {
-  color: #c03e32;
-}
-
 a,
 button,
 header h1 {
@@ -38,6 +28,16 @@ header h1 {
 
 a {
   text-decoration: none;
+}
+
+.logo {
+  font-size: 1.2rem;
+  margin: 0 0.2rem;
+}
+
+.logo,
+.mapboxgl-marker > button {
+  color: #c03e32;
 }
 
 .nav-link {
@@ -106,10 +106,18 @@ input[type=date]:invalid,
   color: rgb(129, 129, 129);
 }
 
+.submit-button-wrapper button,
+.mapboxgl-marker > button,
+.delete-icon,
+.delete-button,
+.cancel-button {
+  border: none;
+  background: none;
+}
+
 .submit-button-wrapper button {
   padding: 0.4rem 1.6rem;
   background-color: rgb(221, 221, 221);
-  border: none;
   transition: background-color 0.2s ease-in;
 }
 
@@ -126,6 +134,10 @@ input[type=date]:invalid,
   box-shadow: 2px 3px 4px rgb(197, 197, 197);
 }
 
+.mapboxgl-marker > button {
+  font-size: 1.8em;
+}
+
 .submit-button-wrapper button:hover,
 .submit-button-wrapper button:focus {
   background-color: rgb(206, 206, 206);
@@ -137,10 +149,6 @@ input[type=date]:invalid,
   position: relative;
 }
 
-.mapboxgl-marker {
-  font-size: 1.8rem;
-}
-
 .sticky-note-wrapper {
   position: relative;
 }
@@ -149,7 +157,7 @@ input[type=date]:invalid,
   text-align: center;
   overflow-wrap: break-word;
   padding: 1rem;
-  background-color: #fbfcd0;
+  background-color: #feffcd;
   width: 230px;
   height: 210px;
   margin: 0.9rem;
@@ -168,7 +176,7 @@ input[type=date]:invalid,
 .search-box input {
   border-bottom: none;
   border: 1px solid rgb(170, 170, 170);
-  width: 50%;
+  width: 80%;
   border-radius: 4px;
   padding: 0.2rem 0.4rem;
 }
@@ -178,8 +186,6 @@ input[type=date]:invalid,
 }
 
 .delete-icon {
-  background: none;
-  border: none;
   position: absolute;
   right: 1.6rem;
 }
@@ -221,7 +227,6 @@ input[type=date]:invalid,
 .cancel-button {
   margin: 0.1rem 0.6rem;
   color: white;
-  border: none;
   padding: 0.4rem 1rem;
   width: 90px;
 }
@@ -230,16 +235,26 @@ input[type=date]:invalid,
   background: rgb(175, 175, 175);
 }
 
-.delete-button {
-  background-color: #dc7575;
-}
-
 .cancel-button:hover,
 .cancel-button:focus {
   background-color: rgb(143, 143, 143);
 }
 
+.delete-button {
+  background-color: #dc7575;
+}
+
 .delete-button:hover,
 .delete-button:focus {
   background-color: #dd5252;
+}
+
+.mapboxgl-popup {
+  top: -1.4rem;
+  left: 0.4rem;
+}
+
+.mapboxgl-popup-content {
+  padding: 0.8rem 1.4rem;
+  border-radius: 5px;
 }

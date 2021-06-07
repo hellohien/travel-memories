@@ -20,7 +20,7 @@ export default class AddEntry extends React.Component {
 
   onPlaceSelected(place) {
     const addressArray = place.address_components;
-    const placeName = addressArray[0].long_name;
+    const placeName = addressArray[0].long_name + ', ' + addressArray[2].short_name;
     this.setState({
       placeVisited: placeName,
       lat: place.geometry.location.lat(),
@@ -43,6 +43,9 @@ export default class AddEntry extends React.Component {
       lat: this.state.lat,
       long: this.state.long
     };
+    if (!newMemory.placeVisited) {
+      return;
+    }
     this.props.onSubmit(newMemory);
     this.setState({ placeVisited: '', date: '', favoriteMoments: '' });
   }
@@ -50,7 +53,7 @@ export default class AddEntry extends React.Component {
   render() {
     return (
     <>
-      <PageTitle title="Enter a Travel Memory" titleDescription="and see it plot on the map!"/>
+      <PageTitle title="Enter a Travel Memory"/>
         <MemoryForm
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}
