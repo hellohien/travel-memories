@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Autocomplete from 'react-google-autocomplete';
 
-export default class MemoryForm extends React.Component {
+export default class MemoryForm extends Component {
   render() {
     const { onSubmit, handleChange } = this.props;
-    const { date } = this.props;
-    const { favoriteMoments } = this.props;
+    const { placeVisited, date, favoriteMoments } = this.props;
     return (
       <form id="form" onSubmit={onSubmit}>
         <div className="row column-full div1">
           <label htmlFor="placeVisited">Place visited:</label>
           <Autocomplete
             id="placeVisited"
+            value={placeVisited}
             placeholder="Enter a location"
             apiKey={'AIzaSyCOMIu6UeiRMCLPu4VHGcVv89lFkRV-mgI'}
             onPlaceSelected={place => {
               this.props.autocompleteInput(place);
             }}
+            onChange={handleChange}
             types={['(regions)']}
             onFocus={event => {
               event.target.setAttribute('autocomplete', 'off');

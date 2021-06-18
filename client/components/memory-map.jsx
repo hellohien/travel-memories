@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
-export default class MemoryMap extends React.Component {
+export default class MemoryMap extends Component {
   constructor(props) {
     super(props);
     this.state = {

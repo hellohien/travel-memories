@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PageTitle from '../components/page-title';
 import MemoryForm from '../components/memory-form';
 import MemoryMap from '../components/memory-map';
 
-export default class AddEntry extends React.Component {
+export default class AddEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,6 +58,7 @@ export default class AddEntry extends React.Component {
         onSubmit={this.handleSubmit}
         autocompleteInput={this.onPlaceSelected}
         handleChange={this.handleChange}
+        placeVisited={this.state.placeVisited}
         date={this.state.date}
         favoriteMoments={this.state.favoriteMoments}
       />

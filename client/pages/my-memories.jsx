@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PageTitle from '../components/page-title';
 import MemorySearch from '../components/memory-search';
 
-export default class MyMemories extends React.Component {
+export default class MyMemories extends Component {
   render() {
     const { memories } = this.props;
     return (

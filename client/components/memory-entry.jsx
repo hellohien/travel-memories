@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { format, parse } from 'date-fns';
 
-export default class MemoryEntry extends React.Component {
+export default class MemoryEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {

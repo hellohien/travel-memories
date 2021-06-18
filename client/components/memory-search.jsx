@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MemoryEntry from '../components/memory-entry';
 
-export default class MemorySearch extends React.Component {
+export default class MemorySearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
