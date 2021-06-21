@@ -11,7 +11,8 @@ export default class AddEntry extends Component {
       date: '',
       favoriteMoments: '',
       lat: '',
-      long: ''
+      long: '',
+      isSubmitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,11 +44,8 @@ export default class AddEntry extends Component {
       lat: this.state.lat,
       long: this.state.long
     };
-    if (!newMemory.placeVisited) {
-      return;
-    }
     this.props.onSubmit(newMemory);
-    this.setState({ placeVisited: '', date: '', favoriteMoments: '' });
+    this.setState({ placeVisited: '', date: '', favoriteMoments: '', isSubmitted: !this.state.isSubmitted });
   }
 
   render() {
@@ -55,15 +53,16 @@ export default class AddEntry extends Component {
     <>
       <PageTitle title="Enter a Travel Memory"/>
         <MemoryForm
-        onSubmit={this.handleSubmit}
-        autocompleteInput={this.onPlaceSelected}
-        handleChange={this.handleChange}
-        placeVisited={this.state.placeVisited}
-        date={this.state.date}
-        favoriteMoments={this.state.favoriteMoments}
-      />
+          onSubmit={this.handleSubmit}
+          autocompleteInput={this.onPlaceSelected}
+          handleChange={this.handleChange}
+          placeVisited={this.state.placeVisited}
+          date={this.state.date}
+          favoriteMoments={this.state.favoriteMoments}
+          isSubmitted={this.state.isSubmitted}
+        />
         <MemoryMap
-        memories={this.props.memories}
+          memories={this.props.memories}
         />
     </>
     );

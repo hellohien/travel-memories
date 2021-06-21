@@ -4,7 +4,7 @@
 
 h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   letter-spacing: 2.5px;
 }
 
@@ -257,4 +257,65 @@ input[type=date]:invalid,
 .mapboxgl-popup-content {
   padding: 0.8rem 1.4rem;
   border-radius: 5px;
+}
+
+.success-message {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: #c3d8bd;
+  padding: 0.4rem;
+  color: #5f7c54;
+  margin: 0.2rem auto;
+  width: 90%;
+}
+
+.success-message.show {
+  animation:
+    show_slide 0.5s
+    ease forwards;
+}
+
+@keyframes show_slide {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  40% {
+    transform: translateY(-10%);
+  }
+
+  80% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+.success-message.hide {
+  animation:
+    hide_slide 0.5s
+    ease forwards;
+}
+
+@keyframes hide_slide {
+  0% {
+    transform: translateY(-10px);
+  }
+
+  40% {
+    transform: translateY(0%);
+  }
+
+  80% {
+    transform: translateY(-10%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
 }
