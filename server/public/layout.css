@@ -12,13 +12,14 @@ input,
 button,
 a {
   font-family: 'Helvetica Neue', sans-serif;
-  color: rgb(32, 32, 32);
+  color: rgb(34, 8, 8);
   letter-spacing: 0.5px;
   font-size: 1rem;
 }
 
-body {
-  background-color: #edede8;
+body,
+.menu-nav {
+  background: #edede8;
 }
 
 .main-container {

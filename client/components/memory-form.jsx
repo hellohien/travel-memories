@@ -13,7 +13,7 @@ export default class MemoryForm extends Component {
   }
 
   notify() {
-    toast.success('Travel memory submitted successfully.', {
+    toast.success('Entry submitted successfully', {
       position: 'top-center',
       toastId: this.state.id,
       autoClose: 3000,
