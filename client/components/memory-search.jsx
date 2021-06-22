@@ -22,7 +22,7 @@ export default class MemorySearch extends Component {
         <div className="search-box row">
           <input
             type="text"
-            placeholder="Search by location.."
+            placeholder="Search location"
             onChange={this.handleInputValueChange}
           />
         </div>

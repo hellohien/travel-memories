@@ -32,17 +32,18 @@ export default class MemoryForm extends Component {
     return (
       <>
         <form id="form" onSubmit={onSubmit}>
-          <div className="row column-full div1">
+          <div className="row column-full">
             <label htmlFor="placeVisited">Place visited:</label>
             <Autocomplete
               id="placeVisited"
-              value={placeVisited}
               placeholder="Enter a location"
+              value={placeVisited}
+              name="placeVisited"
+              onChange={handleChange}
               apiKey={'AIzaSyCOMIu6UeiRMCLPu4VHGcVv89lFkRV-mgI'}
               onPlaceSelected={place => {
                 this.props.autocompleteInput(place);
               }}
-              onChange={handleChange}
               types={['(regions)']}
               onFocus={event => {
                 event.target.setAttribute('autocomplete', 'off');
@@ -55,7 +56,8 @@ export default class MemoryForm extends Component {
             <input
               value={date}
               onChange={handleChange}
-              id="date" type="date"
+              id="date"
+              type="date"
               name="date"
               required
             />
