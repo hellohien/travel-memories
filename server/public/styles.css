@@ -195,11 +195,15 @@ input[type=date]:invalid,
 .sticky-note {
   text-align: center;
   overflow-wrap: break-word;
-  padding: 1rem;
+  padding: 1.2rem;
   background-color: #feffcd;
   width: 230px;
   height: 210px;
   margin: 0.9rem;
+}
+
+.sticky-note h3 {
+  margin: 9.6px;
 }
 
 .tape {
@@ -226,7 +230,8 @@ input[type=date]:invalid,
 
 .delete-icon {
   position: absolute;
-  right: 1.6rem;
+  right: 1.4rem;
+  bottom: 1.6rem;
 }
 
 .delete-icon:hover,

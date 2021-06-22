@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PageTitle from '../components/page-title';
 import MemoryForm from '../components/memory-form';
 import MemoryMap from '../components/memory-map';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class AddEntry extends Component {
   constructor(props) {
@@ -11,12 +13,12 @@ export default class AddEntry extends Component {
       date: '',
       favoriteMoments: '',
       lat: '',
-      long: '',
-      isSubmitted: false
+      long: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onPlaceSelected = this.onPlaceSelected.bind(this);
+    this.displayToast = this.displayToast.bind(this);
   }
 
   onPlaceSelected(place) {
@@ -35,6 +37,20 @@ export default class AddEntry extends Component {
     });
   }
 
+  displayToast() {
+    toast.configure();
+    toast.success('Entry submitted successfully', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: false,
+      progress: undefined
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const newMemory = {
@@ -45,7 +61,8 @@ export default class AddEntry extends Component {
       long: this.state.long
     };
     this.props.onSubmit(newMemory);
-    this.setState({ placeVisited: '', date: '', favoriteMoments: '', isSubmitted: !this.state.isSubmitted });
+    this.displayToast();
+    this.setState({ placeVisited: '', date: '', favoriteMoments: '' });
   }
 
   render() {
