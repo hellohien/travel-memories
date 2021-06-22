@@ -22,8 +22,7 @@ export default class AddEntry extends Component {
   }
 
   onPlaceSelected(place) {
-    const addressArray = place.address_components;
-    const placeName = addressArray[0].long_name + ', ' + addressArray[2].short_name;
+    const placeName = place.formatted_address;
     this.setState({
       placeVisited: placeName,
       lat: place.geometry.location.lat(),
@@ -76,7 +75,6 @@ export default class AddEntry extends Component {
           placeVisited={this.state.placeVisited}
           date={this.state.date}
           favoriteMoments={this.state.favoriteMoments}
-          isSubmitted={this.state.isSubmitted}
         />
         <MemoryMap
           memories={this.props.memories}
