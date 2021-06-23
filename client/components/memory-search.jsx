@@ -29,12 +29,12 @@ export default class MemorySearch extends Component {
         {memories.length === 0
           ? <div className="row no-entries-found">No entries to show</div>
           : <div className="row">
-                {memories.filter(memory => {
-                  if (inputValue === '') return memory;
-                  else if (memory.placeVisited.toLowerCase().includes(inputValue.toLowerCase())) return memory;
-                  else return false;
-                }).map((memory, key) => {
-                  return (
+              {memories.filter(memory => {
+                if (inputValue === '') return memory;
+                else if (memory.placeVisited.toLowerCase().includes(inputValue.toLowerCase())) return memory;
+                else return false;
+              }).map((memory, key) => {
+                return (
                   <div className="sticky-note-wrapper" key={key}>
                     <MemoryEntry
                       key={memory.memoryId}
@@ -45,8 +45,8 @@ export default class MemorySearch extends Component {
                       deleteMemory={this.props.deleteMemory}
                     />
                   </div>
-                  );
-                })}
+                );
+              })}
             </div>
         }
       </>

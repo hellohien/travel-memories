@@ -90,7 +90,8 @@ a {
   bottom: 0;
   height: 100vh;
   z-index: 9;
-  width: 230px;
+  max-width: 240px;
+  width: 100%;
   list-style: none;
   transform: translateX(100%);
   transition: transform 0.6s ease-in-out;
@@ -100,7 +101,6 @@ a {
 
 .menu-nav.show-menu {
   transform: translateX(0);
-  transition: transform 0.7s ease-in-out;
 }
 
 .menu-nav li {
@@ -244,13 +244,13 @@ input[type=date]:invalid,
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 8;
   position: fixed;
   bottom: 0;
   top: 0;
   right: 0;
   left: 0;
-  transition: all 0.5s ease;
+  transition: 0.5s ease;
 }
 
 .modal {
@@ -306,9 +306,9 @@ input[type=date]:invalid,
 
 .Toastify__toast,
 .Toastify__close-button {
-  color: #6b8162 !important;
+  color: #48603b !important;
 }
 
 .Toastify__toast--success {
-  background: #dff0d7 !important;
+  background: #cfdaca !important;
 }
