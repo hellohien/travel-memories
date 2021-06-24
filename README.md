@@ -15,11 +15,12 @@ A full-stack application for people who love to travel and document their memori
 
 
 ## Features
-- User can submit quiz answers
-- User can view recommended recipe
-- User can add a recipe to favorites
-- User can view favorites
-- User can delete a recipe
+- User can create an entry
+- User can view marked locations on map
+- User can view entries
+- User can search an entry by location
+- User can delete an entry
+- User can view popup of location
 
 ## Planned Features
 - User can sign-up
