@@ -44,10 +44,12 @@ export default class MemoryMap extends Component {
             longitude={parseFloat(memory.long)}
             offsetLeft={-20} offsetTop={-25}
           >
-            <button onClick={e => {
-              e.preventDefault();
-              this.setState({ selectedLocation: memory });
-            }}
+            <button
+              aria-label="Right Align"
+              onClick={e => {
+                e.preventDefault();
+                this.setState({ selectedLocation: memory });
+              }}
             >
               <i className="fa fa-map-marker"></i>
             </button>

@@ -77,7 +77,6 @@ a {
 
 .nav-bar button {
   position: relative;
-  right: 3px;
   top: 0;
   z-index: 10;
   cursor: pointer;
@@ -90,8 +89,7 @@ a {
   bottom: 0;
   height: 100vh;
   z-index: 9;
-  max-width: 240px;
-  width: 100%;
+  width: 200px;
   list-style: none;
   transform: translateX(100%);
   transition: transform 0.6s ease-in-out;
@@ -306,9 +304,9 @@ input[type=date]:invalid,
 
 .Toastify__toast,
 .Toastify__close-button {
-  color: #48603b !important;
+  color: #355026 !important;
 }
 
 .Toastify__toast--success {
-  background: #cfdaca !important;
+  background: #c3d6ba !important;
 }
