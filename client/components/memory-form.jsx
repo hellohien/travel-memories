@@ -1,21 +1,22 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
 
-export default class MemoryForm extends React.Component {
-  render() {
-    const { onSubmit, handleChange } = this.props;
-    const { date } = this.props;
-    const { favoriteMoments } = this.props;
-    return (
+export default function MemoryForm(props) {
+  const { onSubmit, handleChange } = props;
+  const { placeVisited, date, favoriteMoments } = props;
+  return (
       <form id="form" onSubmit={onSubmit}>
-        <div className="row column-full div1">
+        <div className="row column-full">
           <label htmlFor="placeVisited">Place visited:</label>
           <Autocomplete
             id="placeVisited"
             placeholder="Enter a location"
+            value={placeVisited}
+            name="placeVisited"
+            onChange={handleChange}
             apiKey={'AIzaSyCOMIu6UeiRMCLPu4VHGcVv89lFkRV-mgI'}
             onPlaceSelected={place => {
-              this.props.autocompleteInput(place);
+              props.autocompleteInput(place);
             }}
             types={['(regions)']}
             onFocus={event => {
@@ -29,7 +30,8 @@ export default class MemoryForm extends React.Component {
           <input
             value={date}
             onChange={handleChange}
-            id="date" type="date"
+            id="date"
+            type="date"
             name="date"
             required
           />
@@ -42,14 +44,13 @@ export default class MemoryForm extends React.Component {
             id="favoriteMoments"
             type="text"
             name="favoriteMoments"
-            maxLength="80"
+            maxLength="75"
             autoComplete="off"
             />
         </div>
         <div className="row column-full submit-button-wrapper">
-          <button>Submit</button>
+          <button aria-label="Center Align">Submit</button>
         </div>
       </form>
-    );
-  }
+  );
 }

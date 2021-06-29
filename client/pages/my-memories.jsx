@@ -1,18 +1,17 @@
-import React from 'react';
-import PageTitle from '../components/page-title';
-import MemorySearch from '../components/memory-search';
+import React, { lazy, Suspense } from 'react';
 
-export default class MyMemories extends React.Component {
-  render() {
-    const { memories } = this.props;
-    return (
-      <>
-        <PageTitle title="My Memories"/>
-        <MemorySearch
-        memories={memories}
-        deleteMemory={this.props.deleteMemory}
-        />
-      </>
-    );
-  }
+const PageTitle = lazy(() => import('../components/page-title'));
+const MemorySearch = lazy(() => import('../components/memory-search'));
+
+export default function MyMemories(props) {
+  const { memories } = props;
+  return (
+    <Suspense fallback={<div className="row">Loading...</div>}>
+      <PageTitle title="My Memories"/>
+      <MemorySearch
+      memories={memories}
+      deleteMemory={props.deleteMemory}
+      />
+    </Suspense>
+  );
 }

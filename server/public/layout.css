@@ -3,10 +3,6 @@
   src: local('Helvetica Neue'), url(./fonts/helvetica-neue-thin.ttf) format('truetype');
 }
 
-html {
-  position: relative;
-}
-
 body,
 input,
 button,
@@ -17,8 +13,9 @@ a {
   font-size: 1rem;
 }
 
-body {
-  background-color: #edede8;
+body,
+.menu-nav {
+  background: #edede8;
 }
 
 .main-container {

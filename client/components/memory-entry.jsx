@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { format, parse } from 'date-fns';
 
-export default class MemoryEntry extends React.Component {
+export default class MemoryEntry extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,17 +27,16 @@ export default class MemoryEntry extends React.Component {
     date = date.slice(0, 10);
     const parsedDate = parse(date, 'yyyy-mm-dd', new Date());
     const formattedDate = format(parsedDate, 'mm-dd-yyyy');
+    this.state.showModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
     return (
       <>
-        <div className="sticky-note"
-        >
+        <div className="sticky-note">
           <div className="tape"></div>
           <div>
             <button
               className="delete-icon far fa-trash-alt"
               onClick={this.toggleModal}
-            >
-            </button>
+            />
           </div>
           <h3>{placeVisited}</h3>
           <p>{formattedDate}</p>

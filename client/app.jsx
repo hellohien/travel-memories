@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AddEntry from './pages/add-entry';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
 import MyMemories from './pages/my-memories';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {

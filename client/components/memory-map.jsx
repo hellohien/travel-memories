@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 
-export default class MemoryMap extends React.Component {
+export default class MemoryMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,10 +44,12 @@ export default class MemoryMap extends React.Component {
             longitude={parseFloat(memory.long)}
             offsetLeft={-20} offsetTop={-25}
           >
-            <button onClick={e => {
-              e.preventDefault();
-              this.setState({ selectedLocation: memory });
-            }}
+            <button
+              aria-label="Right Align"
+              onClick={e => {
+                e.preventDefault();
+                this.setState({ selectedLocation: memory });
+              }}
             >
               <i className="fa fa-map-marker"></i>
             </button>
