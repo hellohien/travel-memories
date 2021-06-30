@@ -36,7 +36,7 @@ body,
 .row,
 header {
   width: 90%;
-  margin: 1.5rem auto;
+  margin: 1.6rem auto;
 }
 
 header {
@@ -47,8 +47,9 @@ header {
 
 @media screen and (min-width: 768px) {
   label,
-  p {
-    margin: 0.6rem;
+  p,
+  input {
+    margin: 0.5rem auto;
   }
 
   h1:not(header h1) {
@@ -61,7 +62,7 @@ header {
   }
 
   .menu-nav {
-    width: 260px;
+    width: 280px;
     padding: 3.5rem;
   }
 }

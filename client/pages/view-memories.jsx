@@ -9,8 +9,8 @@ export default function ViewMemories(props) {
     <Suspense fallback={<div className="row">Loading...</div>}>
       <PageTitle title="My Memories"/>
       <MemorySearch
-      memories={memories}
-      deleteMemory={deleteMemory}
+        memories={memories}
+        deleteMemory={deleteMemory}
       />
     </Suspense>
   );
