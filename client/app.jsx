@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import AddEntry from './pages/add-entry';
 import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import MyMemories from './pages/my-memories';
+import ViewMemories from './pages/view-memories';
+import ViewMap from './pages/view-map';
 
 export default class App extends Component {
   constructor(props) {
@@ -31,11 +32,16 @@ export default class App extends Component {
                 memories={this.state.memories}
               />;
     }
-    if (route.path === 'myMemories') {
-      return <MyMemories
+    if (route.path === 'viewMemories') {
+      return <ViewMemories
                 memories={this.state.memories}
                 deleteMemory={this.deleteMemory}
               />;
+    }
+    if (route.path === 'viewMap') {
+      return <ViewMap
+        memories={this.state.memories}
+      />;
     }
   }
 
