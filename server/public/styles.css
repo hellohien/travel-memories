@@ -312,3 +312,32 @@ input[type=date]:invalid,
 .Toastify__toast--success {
   background: #c3d6ba !important;
 }
+
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader::after {
+  content: " ";
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid rgb(201, 201, 201);
+  border-color: rgb(201, 201, 201) transparent rgb(201, 201, 201) transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

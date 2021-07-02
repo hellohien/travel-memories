@@ -1,10 +1,7 @@
-import React, { Component, lazy, Suspense } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-const PageTitle = lazy(() => import('../components/page-title'));
-const MemoryForm = lazy(() => import('../components/memory-form'));
-const MemoryMap = lazy(() => import('../components/memory-map'));
+import React, { Component } from 'react';
+import PageTitle from '../components/page-title';
+import MemoryForm from '../components/memory-form';
+import MemoryMap from '../components/memory-map';
 
 export default class AddEntry extends Component {
   constructor(props) {
@@ -19,7 +16,6 @@ export default class AddEntry extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onPlaceSelected = this.onPlaceSelected.bind(this);
-    this.displayToast = this.displayToast.bind(this);
   }
 
   onPlaceSelected(place) {
@@ -37,20 +33,6 @@ export default class AddEntry extends Component {
     });
   }
 
-  displayToast() {
-    toast.configure();
-    toast.success('Entry submitted successfully', {
-      position: 'top-center',
-      autoClose: 3000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: false,
-      pauseOnFocusLoss: false,
-      draggable: false,
-      progress: undefined
-    });
-  }
-
   handleSubmit(event) {
     event.preventDefault();
     const newMemory = {
@@ -61,14 +43,13 @@ export default class AddEntry extends Component {
       long: this.state.long
     };
     this.props.onSubmit(newMemory);
-    this.displayToast();
     this.setState({ placeVisited: '', date: '', favoriteMoments: '' });
   }
 
   render() {
     return (
-    <Suspense fallback={<div className="row">Loading...</div>}>
-      <PageTitle title="Enter a Travel Memory"/>
+      <>
+        <PageTitle title="Enter a Travel Memory"/>
         <MemoryForm
           onSubmit={this.handleSubmit}
           autocompleteInput={this.onPlaceSelected}
@@ -80,7 +61,7 @@ export default class AddEntry extends Component {
         <MemoryMap
           memories={this.props.memories}
         />
-    </Suspense>
+      </>
     );
   }
 }

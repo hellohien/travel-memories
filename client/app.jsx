@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
-import AddEntry from './pages/add-entry';
-import Header from './components/header';
+import React, { Component, lazy, Suspense } from 'react';
+// import AddEntry from './pages/add-entry';
+// import Header from './components/header';
 import parseRoute from './lib/parse-route';
-import MyMemories from './pages/my-memories';
+// import MyMemories from './pages/my-memories';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const AddEntry = lazy(() => import('./pages/add-entry'));
+const Header = lazy(() => import('./components/header'));
+const MyMemories = lazy(() => import('./pages/my-memories'));
+// const parseRoute = lazy(() => import('./lib/parse-route'));
 
 export default class App extends Component {
   constructor(props) {
@@ -13,6 +20,7 @@ export default class App extends Component {
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
+    this.displayToast = this.displayToast.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +47,20 @@ export default class App extends Component {
     }
   }
 
+  displayToast() {
+    toast.configure();
+    toast.success('Entry submitted successfully', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: false,
+      progress: undefined
+    });
+  }
+
   getAllMemories() {
     fetch('/api/memories')
       .then(res => res.json())
@@ -61,8 +83,12 @@ export default class App extends Component {
         const updatedMemories = this.state.memories.slice();
         updatedMemories.push(memory);
         this.setState({ memories: updatedMemories });
+        this.displayToast();
       })
-      .catch(err => console.log('Fetch failed', err));
+      .catch(err => {
+        console.log('Fetch failed', err);
+        alert('Could not submit entry. Please try again later.');
+      });
   }
 
   deleteMemory(memoryId) {
@@ -81,15 +107,19 @@ export default class App extends Component {
         updatedMemories.splice(index, 1);
         this.setState({ memories: updatedMemories });
       })
-      .catch(err => console.log('Fetch failed', err));
+      .catch(err => {
+        console.log('Fetch failed', err);
+      });
   }
 
   render() {
     return (
-      <div className="main-container">
-        <Header />
-        {this.renderPage()}
-      </div>
+      <Suspense fallback={<div className="loader"></div>}>
+        <div className="main-container">
+          <Header />
+          {this.renderPage()}
+        </div>
+      </Suspense>
     );
   }
 }
