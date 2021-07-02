@@ -19,8 +19,7 @@ export default function NavBar(props) {
       <div className={navbarOpen ? ' overlay' : ''} />
       <ul className={`menu-nav ${navbarOpen ? 'show-menu open' : ''}`}>
         <li><a onClick={() => closeMenu()} className="nav-link" href="#addEntry">Add Entry</a></li>
-        <li><a onClick={() => closeMenu()} className="nav-link" href="#viewMemories">View Memories</a></li>
-        <li><a onClick={() => closeMenu()} className="nav-link" href="#viewMap">View Map</a></li>
+        <li><a onClick={() => closeMenu()} className="nav-link" href="#myMemories">My Memories</a></li>
       </ul>
     </nav>
   );

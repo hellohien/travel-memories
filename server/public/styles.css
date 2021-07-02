@@ -306,6 +306,7 @@ input[type=date]:invalid,
 .Toastify__toast,
 .Toastify__close-button {
   color: #355026 !important;
+  font-weight: 300;
 }
 
 .Toastify__toast--success {

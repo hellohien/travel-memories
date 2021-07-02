@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const PageTitle = lazy(() => import('../components/page-title'));
 const MemoryForm = lazy(() => import('../components/memory-form'));
+const MemoryMap = lazy(() => import('../components/memory-map'));
 
 export default class AddEntry extends Component {
   constructor(props) {
@@ -75,6 +76,9 @@ export default class AddEntry extends Component {
           placeVisited={this.state.placeVisited}
           date={this.state.date}
           favoriteMoments={this.state.favoriteMoments}
+        />
+        <MemoryMap
+          memories={this.props.memories}
         />
     </Suspense>
     );

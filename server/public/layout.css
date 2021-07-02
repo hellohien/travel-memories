@@ -62,14 +62,13 @@ header {
   }
 
   .menu-nav {
-    width: 280px;
-    padding: 3.5rem;
+    width: 320px;
+    padding: 4rem 4.5rem;
   }
 }
 
-@media screen and (min-width: 992px) {
-  .main-container,
-  #map > div {
-    max-width: 1200px;
+@media screen and (min-width: 1500px) {
+  .menu-nav {
+    width: 420px;
   }
 }
