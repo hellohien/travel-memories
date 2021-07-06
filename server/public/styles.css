@@ -4,7 +4,7 @@
 
 h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   letter-spacing: 2.5px;
 }
 
@@ -16,8 +16,9 @@ input {
 }
 
 p,
-label {
-  margin: 0.5rem;
+label,
+input {
+  margin: 0.4rem auto;
 }
 
 a,
@@ -46,15 +47,14 @@ a {
 
 .nav-link {
   position: relative;
-  font-weight: bold;
 }
 
 .nav-link::before {
   content: "";
   position: absolute;
   width: 100%;
-  height: 1.5px;
-  bottom: -4px;
+  height: 2px;
+  bottom: -5px;
   left: 0;
   background-color: #3e3e3e;
   visibility: hidden;
@@ -89,11 +89,11 @@ a {
   bottom: 0;
   height: 100vh;
   z-index: 9;
-  width: 200px;
+  width: 190px;
   list-style: none;
   transform: translateX(100%);
   transition: transform 0.6s ease-in-out;
-  padding: 3rem 2.5rem;
+  padding: 3rem 2rem;
   margin: 0;
 }
 
@@ -129,6 +129,7 @@ input,
 input {
   background: none;
   border: 0;
+  padding: 0.2rem 0;
   border-bottom: 0.5px solid rgb(170, 170, 170);
 }
 
@@ -305,8 +306,38 @@ input[type=date]:invalid,
 .Toastify__toast,
 .Toastify__close-button {
   color: #355026 !important;
+  font-weight: 300;
 }
 
 .Toastify__toast--success {
   background: #c3d6ba !important;
+}
+
+.loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader::after {
+  content: " ";
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid rgb(201, 201, 201);
+  border-color: rgb(201, 201, 201) transparent rgb(201, 201, 201) transparent;
+  animation: loader 1.2s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

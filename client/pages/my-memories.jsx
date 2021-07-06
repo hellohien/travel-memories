@@ -1,17 +1,16 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
+import PageTitle from '../components/page-title';
+import MemorySearch from '../components/memory-search';
 
-const PageTitle = lazy(() => import('../components/page-title'));
-const MemorySearch = lazy(() => import('../components/memory-search'));
-
-export default function MyMemories(props) {
-  const { memories } = props;
+export default function ViewMemories(props) {
+  const { memories, deleteMemory } = props;
   return (
-    <Suspense fallback={<div className="row">Loading...</div>}>
+    <>
       <PageTitle title="My Memories"/>
       <MemorySearch
-      memories={memories}
-      deleteMemory={props.deleteMemory}
+        memories={memories}
+        deleteMemory={deleteMemory}
       />
-    </Suspense>
+    </>
   );
 }

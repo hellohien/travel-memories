@@ -45,7 +45,7 @@ export default class MemoryMap extends Component {
             offsetLeft={-20} offsetTop={-25}
           >
             <button
-              aria-label="Right Align"
+              aria-label="Center Align"
               onClick={e => {
                 e.preventDefault();
                 this.setState({ selectedLocation: memory });
