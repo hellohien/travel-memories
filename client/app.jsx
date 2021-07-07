@@ -2,7 +2,6 @@ import React, { Component, lazy, Suspense } from 'react';
 import parseRoute from './lib/parse-route';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import Redirect from './components/redirect';
 
 const AddEntry = lazy(() => import('./pages/add-entry'));
 const Header = lazy(() => import('./components/header'));
@@ -15,7 +14,8 @@ export default class App extends Component {
     this.state = {
       user: null,
       memories: [],
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      isAuth: false
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
@@ -46,7 +46,7 @@ export default class App extends Component {
     }
     if (route.path === '' || route.path === 'signUp') {
       return <Auth
-              user={this.state.user}
+              route={this.state.route}
             />;
     }
   }
@@ -117,13 +117,14 @@ export default class App extends Component {
   }
 
   render() {
-    // if (!this.state.user) {
-    //   return <Redirect to="#signUp" />;
-    // }
+    const { route } = this.state;
     return (
       <Suspense fallback={<div className="loader"></div>}>
         <div className="main-container">
-          <Header />
+          {(route.path === 'signUp' || route.path === 'signIn')
+            ? null
+            : <Header />
+          }
           {this.renderPage()}
         </div>
       </Suspense>

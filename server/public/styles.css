@@ -400,12 +400,12 @@ button.auth-button:focus {
   background-color: #afc7a2;
 }
 
+.auth-page-welcome {
+  margin-bottom: 1rem;
+}
+
 .auth-page-welcome h1 {
   margin: 0.2rem 0;
   text-transform: uppercase;
   font-size: 1.8rem;
-}
-
-.auth-page-welcome {
-  margin-bottom: 1rem;
 }

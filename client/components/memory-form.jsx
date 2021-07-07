@@ -49,7 +49,7 @@ export default function MemoryForm(props) {
             />
         </div>
         <div className="row column-full submit-button-wrapper">
-          <button aria-label="Center Align">Submit</button>
+          <button>Submit</button>
         </div>
       </form>
   );

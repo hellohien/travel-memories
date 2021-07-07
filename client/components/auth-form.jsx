@@ -6,8 +6,7 @@ export default class AuthForm extends Component {
     this.state = {
       username: 'guest',
       password: 'guest',
-      invalidLogin: false,
-      errorMessage: ''
+      invalidLogin: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,7 +33,7 @@ export default class AuthForm extends Component {
       })
       .catch(err => {
         console.error(err);
-        this.setState({ errorMessage: 'bad-request' });
+        alert('Bad request. Please try again later.');
       });
   }
 
@@ -67,6 +66,11 @@ export default class AuthForm extends Component {
         return value;
       }
     };
+    const accountSubmitButton = (
+      (window.location.hash === 'sign-in')
+        ? 'Sign In'
+        : 'Register'
+    );
     return (
       <>
         <form className="auth-form" onSubmit={this.handleSubmit}>
@@ -93,7 +97,7 @@ export default class AuthForm extends Component {
           {this.state.invalidLogin ? this.usernameTaken() : null}
           <div className="row column-full submit-button-wrapper">
             <button type="submit" className="auth-button">
-              Register
+              {accountSubmitButton}
             </button>
           </div>
         </form>
