@@ -1,22 +1,19 @@
 import React, { Component, lazy, Suspense } from 'react';
-// import AddEntry from './pages/add-entry';
-// import Header from './components/header';
 import parseRoute from './lib/parse-route';
-// import MyMemories from './pages/my-memories';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddEntry = lazy(() => import('./pages/add-entry'));
 const Header = lazy(() => import('./components/header'));
 const MyMemories = lazy(() => import('./pages/my-memories'));
-// const parseRoute = lazy(() => import('./lib/parse-route'));
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       memories: [],
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      doneLoading: true
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
@@ -37,6 +34,7 @@ export default class App extends Component {
       return <AddEntry
                 onSubmit={this.addMemory}
                 memories={this.state.memories}
+                doneLoading={this.state.doneLoading}
               />;
     }
     if (route.path === 'myMemories') {
@@ -73,6 +71,7 @@ export default class App extends Component {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     const bodyJSON = JSON.stringify(newMemory);
+    this.setState({ doneLoading: false });
     fetch('/api/memories', {
       method: 'POST',
       headers,
@@ -82,12 +81,11 @@ export default class App extends Component {
       .then(memory => {
         const updatedMemories = this.state.memories.slice();
         updatedMemories.push(memory);
-        this.setState({ memories: updatedMemories });
+        this.setState({ memories: updatedMemories, doneLoading: true });
         this.displayToast();
       })
       .catch(err => {
         console.log('Fetch failed', err);
-        alert('Could not submit entry. Please try again later.');
       });
   }
 

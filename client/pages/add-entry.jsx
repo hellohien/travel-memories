@@ -35,6 +35,10 @@ export default class AddEntry extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if (!navigator.onLine) {
+      alert('Could not submit entry. Please try again later.');
+      return;
+    }
     const newMemory = {
       placeVisited: this.state.placeVisited,
       date: this.state.date,
