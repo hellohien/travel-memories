@@ -20,6 +20,7 @@ export default function NavBar(props) {
       <ul className={`menu-nav ${navbarOpen ? 'show-menu open' : ''}`}>
         <li><a onClick={() => closeMenu()} className="nav-link" href="#addEntry">Add Entry</a></li>
         <li><a onClick={() => closeMenu()} className="nav-link" href="#myMemories">My Memories</a></li>
+        <li><a onClick={() => closeMenu()} className="nav-link" href="#signUp">Sign Up</a></li>
       </ul>
     </nav>
   );

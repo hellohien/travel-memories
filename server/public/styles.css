@@ -3,7 +3,6 @@
 }
 
 h1 {
-  font-family: 'Cormorant Garamond', serif;
   font-size: 1.6rem;
   letter-spacing: 2.5px;
 }
@@ -13,6 +12,11 @@ h2,
 input {
   margin: 0;
   padding: 0;
+}
+
+h1,
+.auth-page-welcome h2 {
+  font-family: 'Cormorant Garamond', serif;
 }
 
 p,
@@ -105,7 +109,8 @@ a {
   margin: 1.2rem 0;
 }
 
-.page-title {
+.page-title,
+.auth-page-welcome {
   text-align: center;
 }
 
@@ -340,4 +345,67 @@ input[type=date]:invalid,
   100% {
     transform: rotate(360deg);
   }
+}
+
+.auth-page {
+  margin: 0 auto;
+}
+
+.invalid-login {
+  color: #dd5252;
+}
+
+.auth-page-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem auto;
+  width: 85%;
+}
+
+.divider {
+  border-top: 0.5px solid rgb(170, 170, 170);
+  margin: 0 0.5rem;
+  width: 100%;
+}
+
+.auth-page-divider p {
+  margin: 0;
+}
+
+.auth-form {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.auth-page-text p a {
+  font-weight: bold;
+  color: #355026;
+  transition: color 0.2s ease-in;
+}
+
+.auth-page-text p a:hover,
+.auth-page-text p a:focus {
+  color: rgb(104, 145, 82);
+}
+
+button.auth-button {
+  color: #355026;
+  background-color: #c3d6ba;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in;
+}
+
+button.auth-button:hover,
+button.auth-button:focus {
+  background-color: #afc7a2;
+}
+
+.auth-page-welcome h1 {
+  margin: 0.2rem 0;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+.auth-page-welcome {
+  margin-bottom: 1rem;
 }

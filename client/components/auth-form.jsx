@@ -5,36 +5,94 @@ export default class AuthForm extends Component {
     super(props);
     this.state = {
       username: 'guest',
-      password: 'guest'
+      password: 'guest',
+      invalidLogin: false,
+      errorMessage: ''
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.usernameTaken = this.usernameTaken.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const req = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state)
+    };
+    fetch('/api/memories/sign-up', req)
+      .then(res => res.json())
+      .then(result => {
+        if (result.error) {
+          this.setState({ invalidLogin: true });
+        } else {
+          window.location.hash = 'sign-in';
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({ errorMessage: 'bad-request' });
+      });
+  }
+
+  usernameTaken() {
+    return (
+      <div className="row column-full invalid-login">
+        <p>Username is taken. Please try again.</p>
+      </div>
+    );
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
+    const demoUsername = value => {
+      if (window.location.hash === '#signIn') {
+        return this.state.username;
+      } else {
+        return value;
+      }
+    };
+    const demoPassword = value => {
+      if (window.location.hash === '#signIn') {
+        return this.state.password;
+      } else {
+        return value;
+      }
+    };
     return (
       <>
-        <form className="auth-form">
+        <form className="auth-form" onSubmit={this.handleSubmit}>
           <div className="row column-full">
-            <label htmlFor="username">Username </label>
+            <label htmlFor="username">Username:</label>
             <input
-              value={this.state.username}
-              onChange={e => this.setState({ username: e.target.value })}
+              value={demoUsername(this.value)}
+              onChange={this.handleChange}
               type="username"
               name="username"
               required
             />
           </div>
           <div className="row column-full">
-            <label htmlFor="password">Password </label>
+            <label htmlFor="password">Password:</label>
             <input
-              value={this.state.password}
-              onChange={e => this.setState({ password: e.target.value })}
+              value={demoPassword(this.value)}
+              onChange={this.handleChange}
               type="password"
               name="password"
               required
             />
           </div>
-          <div className="row column-full">
-            <button type="submit" className="auth-button" >
+          {this.state.invalidLogin ? this.usernameTaken() : null}
+          <div className="row column-full submit-button-wrapper">
+            <button type="submit" className="auth-button">
               Register
             </button>
           </div>
