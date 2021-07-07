@@ -11,7 +11,8 @@ export default class AddEntry extends Component {
       date: '',
       favoriteMoments: '',
       lat: '',
-      long: ''
+      long: '',
+      networkError: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +36,10 @@ export default class AddEntry extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if (!navigator.onLine) {
+      this.setState({ networkError: true });
+      return;
+    }
     const newMemory = {
       placeVisited: this.state.placeVisited,
       date: this.state.date,
@@ -57,6 +62,7 @@ export default class AddEntry extends Component {
           placeVisited={this.state.placeVisited}
           date={this.state.date}
           favoriteMoments={this.state.favoriteMoments}
+          networkError={this.state.networkError}
         />
         <MemoryMap
           memories={this.props.memories}

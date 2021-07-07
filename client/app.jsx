@@ -1,15 +1,11 @@
 import React, { Component, lazy, Suspense } from 'react';
-// import AddEntry from './pages/add-entry';
-// import Header from './components/header';
 import parseRoute from './lib/parse-route';
-// import MyMemories from './pages/my-memories';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddEntry = lazy(() => import('./pages/add-entry'));
 const Header = lazy(() => import('./components/header'));
 const MyMemories = lazy(() => import('./pages/my-memories'));
-// const parseRoute = lazy(() => import('./lib/parse-route'));
 
 export default class App extends Component {
   constructor(props) {
@@ -87,7 +83,6 @@ export default class App extends Component {
       })
       .catch(err => {
         console.log('Fetch failed', err);
-        alert('Could not submit entry. Please try again later.');
       });
   }
 
