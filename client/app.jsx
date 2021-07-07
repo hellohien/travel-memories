@@ -12,8 +12,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       memories: [],
-      route: parseRoute(window.location.hash),
-      doneLoading: true
+      route: parseRoute(window.location.hash)
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
@@ -34,7 +33,6 @@ export default class App extends Component {
       return <AddEntry
                 onSubmit={this.addMemory}
                 memories={this.state.memories}
-                doneLoading={this.state.doneLoading}
               />;
     }
     if (route.path === 'myMemories') {
@@ -71,7 +69,6 @@ export default class App extends Component {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     const bodyJSON = JSON.stringify(newMemory);
-    this.setState({ doneLoading: false });
     fetch('/api/memories', {
       method: 'POST',
       headers,
@@ -81,7 +78,7 @@ export default class App extends Component {
       .then(memory => {
         const updatedMemories = this.state.memories.slice();
         updatedMemories.push(memory);
-        this.setState({ memories: updatedMemories, doneLoading: true });
+        this.setState({ memories: updatedMemories });
         this.displayToast();
       })
       .catch(err => {

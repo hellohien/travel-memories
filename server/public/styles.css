@@ -341,3 +341,7 @@ input[type=date]:invalid,
     transform: rotate(360deg);
   }
 }
+
+.error-message {
+  color: #dd5252;
+}
