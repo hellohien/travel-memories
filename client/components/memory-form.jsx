@@ -3,7 +3,12 @@ import Autocomplete from 'react-google-autocomplete';
 
 export default function MemoryForm(props) {
   const { onSubmit, handleChange } = props;
-  const { placeVisited, date, favoriteMoments } = props;
+  const { placeVisited, date, favoriteMoments, networkError } = props;
+  const errorMessage = (
+    networkError
+      ? 'Could not submit entry. Please try again later.'
+      : null
+  );
   return (
       <form id="form" onSubmit={onSubmit}>
         <div className="row column-full">
@@ -48,6 +53,9 @@ export default function MemoryForm(props) {
             autoComplete="off"
             />
         </div>
+        <p className="row column-full error-message">
+          {errorMessage}
+        </p>
         <div className="row column-full submit-button-wrapper">
           <button>Submit</button>
         </div>

@@ -91,7 +91,6 @@ export default class App extends Component {
       })
       .catch(err => {
         console.log('Fetch failed', err);
-        alert('Could not submit entry. Please try again later.');
       });
   }
 
