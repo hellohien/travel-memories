@@ -39,7 +39,7 @@ export default class AuthForm extends Component {
 
   usernameTaken() {
     return (
-      <div className="row column-full invalid-login">
+      <div className="row column-full error-message">
         <p>Username is taken. Please try again.</p>
       </div>
     );
