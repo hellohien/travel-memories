@@ -44,7 +44,7 @@ export default class App extends Component {
                 deleteMemory={this.deleteMemory}
               />;
     }
-    if (route.path === '' || route.path === 'signUp') {
+    if (route.path === '' || route.path === 'signIn' || route.path === 'signUp') {
       return <Auth
               route={this.state.route}
             />;

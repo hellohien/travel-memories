@@ -4,8 +4,8 @@ export default class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'guest',
-      password: 'guest',
+      username: '',
+      password: '',
       invalidLogin: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +28,7 @@ export default class AuthForm extends Component {
         if (result.error) {
           this.setState({ invalidLogin: true });
         } else {
-          window.location.hash = 'sign-in';
+          window.location.hash = '#addEntry';
         }
       })
       .catch(err => {
@@ -46,28 +46,30 @@ export default class AuthForm extends Component {
   }
 
   handleChange(event) {
+    const { name, value } = event.target;
     this.setState({
-      [event.target.name]: event.target.value
+      [name]: value
     });
   }
 
   render() {
+    const { route } = this.props;
     const demoUsername = value => {
-      if (window.location.hash === '#signIn') {
-        return this.state.username;
+      if (route.path === 'signIn') {
+        return 'guest';
       } else {
-        return value;
+        return this.state.username;
       }
     };
     const demoPassword = value => {
-      if (window.location.hash === '#signIn') {
-        return this.state.password;
+      if (route.path === 'signIn') {
+        return 'guest';
       } else {
-        return value;
+        return this.state.password;
       }
     };
     const accountSubmitButton = (
-      (window.location.hash === 'sign-in')
+      (route.path === 'signIn')
         ? 'Sign In'
         : 'Register'
     );
@@ -77,20 +79,20 @@ export default class AuthForm extends Component {
           <div className="row column-full">
             <label htmlFor="username">Username:</label>
             <input
+              name="username"
               value={demoUsername(this.value)}
               onChange={this.handleChange}
-              type="username"
-              name="username"
+              type="text"
               required
             />
           </div>
           <div className="row column-full">
             <label htmlFor="password">Password:</label>
             <input
+              name="password"
               value={demoPassword(this.value)}
               onChange={this.handleChange}
               type="password"
-              name="password"
               required
             />
           </div>
