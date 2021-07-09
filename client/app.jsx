@@ -14,8 +14,7 @@ export default class App extends Component {
     this.state = {
       user: null,
       memories: [],
-      route: parseRoute(window.location.hash),
-      isAuth: false
+      route: parseRoute(window.location.hash)
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);

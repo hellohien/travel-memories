@@ -6,7 +6,8 @@ export default class AuthForm extends Component {
     this.state = {
       username: '',
       password: '',
-      invalidLogin: false
+      invalidLogin: false,
+      networkError: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -14,7 +15,12 @@ export default class AuthForm extends Component {
   }
 
   handleSubmit(event) {
+    const { path } = this.props;
     event.preventDefault();
+    if (!navigator.onLine) {
+      this.setState({ networkError: true });
+      return;
+    }
     const req = {
       method: 'POST',
       headers: {
@@ -22,7 +28,7 @@ export default class AuthForm extends Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/memories/sign-up', req)
+    fetch(`/api/memories/${path}`, req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
@@ -33,7 +39,6 @@ export default class AuthForm extends Component {
       })
       .catch(err => {
         console.error(err);
-        alert('Bad request. Please try again later.');
       });
   }
 
@@ -41,6 +46,14 @@ export default class AuthForm extends Component {
     return (
       <div className="row column-full error-message">
         <p>Username is taken. Please try again.</p>
+      </div>
+    );
+  }
+
+  networkError() {
+    return (
+      <div className="row column-full error-message">
+        <p>Bad request. Please try again later.</p>
       </div>
     );
   }
@@ -53,23 +66,23 @@ export default class AuthForm extends Component {
   }
 
   render() {
-    const { route } = this.props;
+    const { path } = this.props;
     const demoUsername = value => {
-      if (route.path === 'signIn') {
+      if (path === 'signIn') {
         return 'guest';
       } else {
         return this.state.username;
       }
     };
     const demoPassword = value => {
-      if (route.path === 'signIn') {
+      if (path === 'signIn') {
         return 'guest';
       } else {
         return this.state.password;
       }
     };
     const accountSubmitButton = (
-      (route.path === 'signIn')
+      (path === 'signIn')
         ? 'Sign In'
         : 'Register'
     );
@@ -96,7 +109,8 @@ export default class AuthForm extends Component {
               required
             />
           </div>
-          {this.state.invalidLogin ? this.usernameTaken() : null}
+          {(this.state.invalidLogin && path === 'signUp') ? this.usernameTaken() : null}
+          {this.state.networkError ? this.networkError() : null}
           <div className="row column-full submit-button-wrapper">
             <button type="submit" className="auth-button">
               {accountSubmitButton}
