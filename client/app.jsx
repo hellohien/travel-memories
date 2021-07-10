@@ -1,5 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import parseRoute from './lib/parse-route';
+import Redirect from './components/redirect';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -108,6 +109,10 @@ export default class App extends Component {
   }
 
   render() {
+    const { route } = this.state;
+    if (route.path === '') {
+      return <Redirect to="addEntry" />;
+    }
     return (
       <Suspense fallback={<div className="loader"></div>}>
         <div className="main-container">
