@@ -30,7 +30,7 @@ export default class App extends Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '' || route.path === 'addEntry') {
+    if (route.path === 'addEntry') {
       return <AddEntry
                 onSubmit={this.addMemory}
                 memories={this.state.memories}
