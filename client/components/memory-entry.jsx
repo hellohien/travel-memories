@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { format, parse } from 'date-fns';
+import DateFNS from '../lib/date-fns';
 
 export default class MemoryEntry extends Component {
   constructor(props) {
@@ -23,10 +23,7 @@ export default class MemoryEntry extends Component {
   render() {
     const { placeVisited, favoriteMoments } = this.props;
     const { memoryId } = this.props.memory;
-    let { date } = this.props;
-    date = date.slice(0, 10);
-    const parsedDate = parse(date, 'yyyy-mm-dd', new Date());
-    const formattedDate = format(parsedDate, 'mm-dd-yyyy');
+    const formattedDate = DateFNS(this.props.date);
     this.state.showModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
     return (
       <>
