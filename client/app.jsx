@@ -7,13 +7,16 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddEntry = lazy(() => import('./pages/add-entry'));
 const Header = lazy(() => import('./components/header'));
 const MyMemories = lazy(() => import('./pages/my-memories'));
+const Auth = lazy(() => import('./pages/auth'));
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
       memories: [],
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      isAuth: false
     };
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
@@ -41,6 +44,11 @@ export default class App extends Component {
                 memories={this.state.memories}
                 deleteMemory={this.deleteMemory}
               />;
+    }
+    if (route.path === '' || route.path === 'signUp') {
+      return <Auth
+              route={this.state.route}
+            />;
     }
   }
 
@@ -116,7 +124,10 @@ export default class App extends Component {
     return (
       <Suspense fallback={<div className="loader"></div>}>
         <div className="main-container">
-          <Header />
+          {(route.path === 'signUp' || route.path === 'signIn')
+            ? null
+            : <Header />
+          }
           {this.renderPage()}
         </div>
       </Suspense>

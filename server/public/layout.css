@@ -45,13 +45,7 @@ header {
   align-items: center;
 }
 
-@media screen and (min-width: 768px) {
-  label,
-  p,
-  input {
-    margin: 0.5rem auto;
-  }
-
+@media screen and (min-width: 769px) {
   h1:not(header h1) {
     font-size: 2.2rem;
   }
@@ -64,6 +58,56 @@ header {
   .menu-nav {
     width: 320px;
     padding: 4rem 4.5rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .row-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 1.6rem auto;
+  }
+
+  .auth-page {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .auth-page-image {
+    width: 350px;
+  }
+
+  .hero-image {
+    background: url(../assets/hero-image.jpg) 0%/cover no-repeat;
+    height: 500px;
+    width: 100%;
+    border-radius: 6rem 6rem 0 0;
+  }
+
+  .auth-page-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem;
+  }
+
+  .auth-form {
+    border: none;
+  }
+
+  .auth-page-form,
+  .auth-page-image {
+    margin: 0 2rem;
+  }
+
+  .auth-page-welcome h1 {
+    margin: 0.8rem 0;
+  }
+
+  .auth-page-welcome {
+    margin: 1.5rem 0;
   }
 }
 
