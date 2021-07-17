@@ -26,7 +26,7 @@ export default class Auth extends Component {
             <h1>Travel Memories</h1>
             <p>{welcomeMessage}</p>
           </div>
-          <AuthForm path={route.path}/>
+          <AuthForm path={route.path} handleSignIn={this.props.handleSignIn}/>
           <div className="auth-page-divider">
             <div className="divider"></div>
             <p>or</p>

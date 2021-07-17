@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import parseRoute from './lib/parse-route';
 import Redirect from './components/redirect';
+import decodeToken from './lib/decodeToken';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -20,6 +21,7 @@ export default class App extends Component {
     this.addMemory = this.addMemory.bind(this);
     this.deleteMemory = this.deleteMemory.bind(this);
     this.displayToast = this.displayToast.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +30,15 @@ export default class App extends Component {
       const route = parseRoute(window.location.hash);
       this.setState({ route });
     });
+    const token = window.localStorage.getItem('memories-context-jwt');
+    const user = token ? decodeToken(token) : null;
+    this.setState({ user });
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('memories-context-jwt', token);
+    this.setState({ user });
   }
 
   renderPage() {
@@ -47,6 +58,7 @@ export default class App extends Component {
     if (route.path === '' || route.path === 'signIn' || route.path === 'signUp') {
       return <Auth
               route={this.state.route}
+              handleSignIn={this.handleSignIn}
             />;
     }
   }
@@ -118,14 +130,14 @@ export default class App extends Component {
   render() {
     const { route } = this.state;
     if (route.path === '') {
-      return <Redirect to="addEntry" />;
+      return <Redirect to="signIn" />;
     }
     return (
       <Suspense fallback={<div className="loader"></div>}>
         <div className="main-container">
           {(route.path === 'signUp' || route.path === 'signIn')
             ? null
-            : <Header />
+            : <Header user={this.state.user}/>
           }
           {this.renderPage()}
         </div>
