@@ -37,11 +37,10 @@ export default class AuthForm extends Component {
           if (path === 'signUp') {
             window.location.hash = 'signIn';
           } else if (result.token && result.user) {
-            this.props.handleSignIn(result);
+            this.props.onSignIn(result);
           } else {
             this.setState({ error: true });
           }
-          // window.location.hash = '#addEntry';
         }
       })
       .catch(err => {

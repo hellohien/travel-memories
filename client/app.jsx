@@ -59,6 +59,7 @@ export default class App extends Component {
       return <Auth
               route={this.state.route}
               handleSignIn={this.handleSignIn}
+              user={this.state.user}
             />;
     }
   }

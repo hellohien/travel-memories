@@ -4,8 +4,9 @@ import Redirect from '../components/redirect';
 
 export default class Auth extends Component {
   render() {
-    const { route } = this.props;
-    if (route.path === '') return <Redirect to="#signIn" />;
+    const { user, route, handleSignIn } = this.props;
+    // if (route.path === '') return <Redirect to="#signIn" />;
+    if (user) return <Redirect to="#addEntry" />;
     const welcomeMessage = (
       (route.path === 'signIn')
         ? 'Welcome to Travel Memories'
@@ -26,7 +27,7 @@ export default class Auth extends Component {
             <h1>Travel Memories</h1>
             <p>{welcomeMessage}</p>
           </div>
-          <AuthForm path={route.path} handleSignIn={this.props.handleSignIn}/>
+          <AuthForm path={route.path} onSignIn={handleSignIn}/>
           <div className="auth-page-divider">
             <div className="divider"></div>
             <p>or</p>
