@@ -22,6 +22,7 @@ export default class App extends Component {
     this.deleteMemory = this.deleteMemory.bind(this);
     this.displayToast = this.displayToast.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,11 @@ export default class App extends Component {
     const { user, token } = result;
     window.localStorage.setItem('memories-context-jwt', token);
     this.setState({ user });
+  }
+
+  handleSignOut() {
+    window.localStorage.removeItem('memories-context-jwt');
+    this.setState({ user: null });
   }
 
   renderPage() {
@@ -138,7 +144,7 @@ export default class App extends Component {
         <div className="main-container">
           {(route.path === 'signUp' || route.path === 'signIn')
             ? null
-            : <Header user={this.state.user}/>
+            : <Header user={this.state.user} handleSignOut={this.handleSignOut}/>
           }
           {this.renderPage()}
         </div>

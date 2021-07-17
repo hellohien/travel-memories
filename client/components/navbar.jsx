@@ -26,7 +26,7 @@ export default function NavBar(props) {
                 <li><a onClick={() => closeMenu()} className="nav-link" href="#signUp">Sign Up</a></li>
               </>
             : <>
-                <li><a onClick={() => closeMenu()} className="nav-link" href="#signIn">Sign Out</a></li>
+              <li><a onClick={props.handleSignOut} className="nav-link" href="">Sign Out</a></li>
               </>
         }
       </ul>
