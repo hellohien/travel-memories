@@ -44,7 +44,7 @@ export default class AuthForm extends Component {
         } else {
           if (path === 'signUp') {
             window.location.hash = '#addEntry';
-          } else if (result.token && result.user) {
+          } else if (result.user && result.token) {
             this.props.onSignIn(result);
           } else {
             this.setState({ invalidLogin: true });

@@ -49,19 +49,21 @@ export default class App extends Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === 'addEntry') {
+    if (route.path === '' || route.path === 'addEntry') {
       return <AddEntry
                 onSubmit={this.addMemory}
                 memories={this.state.memories}
+                user={this.state.user}
               />;
     }
     if (route.path === 'myMemories') {
       return <MyMemories
                 memories={this.state.memories}
                 deleteMemory={this.deleteMemory}
+                user={this.state.user}
               />;
     }
-    if (route.path === '' || route.path === 'signIn' || route.path === 'signUp') {
+    if (route.path === 'signIn' || route.path === 'signUp') {
       return <Auth
               route={this.state.route}
               handleSignIn={this.handleSignIn}
@@ -135,16 +137,14 @@ export default class App extends Component {
   }
 
   render() {
-    const { route } = this.state;
-    if (route.path === '') {
-      return <Redirect to="signIn" />;
-    }
+    const { route, user } = this.state;
+    if (route.path === '' && user === null) return <Redirect to="#signIn" />;
     return (
       <Suspense fallback={<div className="loader"></div>}>
         <div className="main-container">
           {(route.path === 'signUp' || route.path === 'signIn')
             ? null
-            : <Header user={this.state.user} handleSignOut={this.handleSignOut}/>
+            : <Header user={user} handleSignOut={this.handleSignOut}/>
           }
           {this.renderPage()}
         </div>

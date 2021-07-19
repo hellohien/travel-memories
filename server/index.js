@@ -51,7 +51,8 @@ app.post('/api/memories/:action', (req, res, next) => {
             const token = jwt.sign(payload, process.env.TOKEN_SECRET);
             res.json({ token, user: payload });
           });
-      });
+      })
+      .catch(err => next(err));
   } else if (action === 'signUp') {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -66,9 +67,6 @@ app.post('/api/memories/:action', (req, res, next) => {
           returning *
         `;
         const params = [username, hashedPassword];
-        if (!username || !password) {
-          throw new ClientError(400, 'username and password are required fields');
-        }
         return db.query(sql, params);
       })
       .then(result => {
@@ -76,6 +74,14 @@ app.post('/api/memories/:action', (req, res, next) => {
         res.status(201).json(user);
       })
       .catch(err => next(err));
+    // .catch(err => {
+    //   if (err.code === '23505') {
+    //     res.send(err.code);
+    //   } else {
+    //     next(err);
+    //   }
+
+    // });
   }
 });
 
