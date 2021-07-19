@@ -8,7 +8,7 @@ export default class AuthForm extends Component {
       password: '',
       invalidLogin: false,
       networkError: false,
-      error: false
+      usernameTaken: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,14 +20,6 @@ export default class AuthForm extends Component {
     if (window.location.hash === '#signIn') {
       this.setState({ username: 'guest', password: 'guest' });
     }
-  }
-
-  handleSignIn() {
-    this.setState({ username: 'guest', password: 'guest' });
-  }
-
-  handleSignOut() {
-    this.setState({ username: '', password: '' });
   }
 
   handleSubmit(event) {
@@ -48,20 +40,35 @@ export default class AuthForm extends Component {
       .then(res => res.json())
       .then(result => {
         if (result.error) {
-          this.setState({ invalidLogin: true });
+          this.setState({ usernameTaken: true });
         } else {
           if (path === 'signUp') {
             window.location.hash = '#addEntry';
           } else if (result.token && result.user) {
             this.props.onSignIn(result);
           } else {
-            this.setState({ error: true });
+            this.setState({ invalidLogin: true });
           }
         }
       })
       .catch(err => {
         console.error(err);
       });
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSignIn() {
+    this.setState({ username: 'guest', password: 'guest' });
+  }
+
+  handleSignOut() {
+    this.setState({ username: '', password: '' });
   }
 
   handleUsernameTaken() {
@@ -80,19 +87,12 @@ export default class AuthForm extends Component {
     );
   }
 
-  handleError() {
+  handleInvalidLogin() {
     return (
       <div className="row column-full error-message">
         <p>Incorrect Username or Password</p>
       </div>
     );
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
   }
 
   render() {
@@ -130,9 +130,9 @@ export default class AuthForm extends Component {
               required
             />
           </div>
-          {(this.state.invalidLogin && path === 'signUp') ? this.handleUsernameTaken() : null}
-          {this.state.handleNetworkError ? this.handleNetworkError() : null}
-          {this.state.handleError ? this.handleError() : null}
+          {(this.state.usernameTaken && path === 'signUp') && this.handleUsernameTaken()}
+          {this.state.networkError && this.handleNetworkError()}
+          {this.state.invalidLogin && this.handleInvalidLogin()}
           <div className="row column-full submit-button-wrapper">
             <button type="submit" className="auth-button">
               {accountSubmitButton}
