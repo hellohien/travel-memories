@@ -4,18 +4,34 @@ export default class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'guest',
-      password: 'guest',
+      username: '',
+      password: '',
       invalidLogin: false,
       networkError: false,
       error: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+
+  componentDidMount() {
+    if (window.location.hash === '#signIn') {
+      this.setState({ username: 'guest', password: 'guest' });
+    }
+  }
+
+  handleSignIn() {
+    this.setState({ username: 'guest', password: 'guest' });
+  }
+
+  handleSignOut() {
+    this.setState({ username: '', password: '' });
   }
 
   handleSubmit(event) {
-    const { path } = this.props;
+    const { path } = this.props.route;
     event.preventDefault();
     if (!navigator.onLine) {
       this.setState({ networkError: true });
@@ -35,7 +51,7 @@ export default class AuthForm extends Component {
           this.setState({ invalidLogin: true });
         } else {
           if (path === 'signUp') {
-            window.location.hash = 'signIn';
+            window.location.hash = '#addEntry';
           } else if (result.token && result.user) {
             this.props.onSignIn(result);
           } else {
@@ -80,25 +96,16 @@ export default class AuthForm extends Component {
   }
 
   render() {
-    const { path } = this.props;
-    const demoUsername = value => {
-      if (path === 'signIn') {
-        return this.state.username;
-      } else {
-        this.setState({ username: value });
-      }
-    };
-    const demoPassword = value => {
-      if (path === 'signIn') {
-        return this.state.password;
-      } else {
-        this.setState({ password: value });
-      }
-    };
+    const { path } = this.props.route;
     const accountSubmitButton = (
       (path === 'signIn')
         ? 'Sign In'
         : 'Register'
+    );
+    const haveAccount = (
+      (path === 'signIn')
+        ? "Don't have an account?"
+        : 'Already have an account?'
     );
     return (
       <>
@@ -107,7 +114,7 @@ export default class AuthForm extends Component {
             <label htmlFor="username">Username:</label>
             <input
               name="username"
-              value={demoUsername(this.value)}
+              value={this.state.username}
               onChange={this.handleChange}
               type="text"
               required
@@ -117,7 +124,7 @@ export default class AuthForm extends Component {
             <label htmlFor="password">Password:</label>
             <input
               name="password"
-              value={demoPassword(this.value)}
+              value={this.state.password}
               onChange={this.handleChange}
               type="password"
               required
@@ -132,6 +139,17 @@ export default class AuthForm extends Component {
             </button>
           </div>
         </form>
+        <div className="auth-page-divider">
+          <div className="divider"></div>
+          <p>or</p>
+          <div className="divider"></div>
+        </div>
+        <div className="auth-page-text">
+          <p>{haveAccount} {path === 'signIn'
+            ? <a onClick={this.handleSignOut} href='#signUp'>Sign Up</a>
+            : <a onClick={this.handleSignIn} href='#signIn'>Sign In</a>}
+          </p>
+        </div>
       </>
     );
   }
