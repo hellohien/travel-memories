@@ -4,17 +4,31 @@ export default class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'guest',
-      password: 'guest',
-      invalidLogin: false
+      username: '',
+      password: '',
+      invalidLogin: false,
+      networkError: false,
+      usernameTaken: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.usernameTaken = this.usernameTaken.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+
+  componentDidMount() {
+    if (window.location.hash === '#signIn') {
+      this.setState({ username: 'guest', password: 'guest' });
+    }
   }
 
   handleSubmit(event) {
+    const { path } = this.props.route;
     event.preventDefault();
+    if (!navigator.onLine) {
+      this.setState({ networkError: true });
+      return;
+    }
     const req = {
       method: 'POST',
       headers: {
@@ -22,22 +36,42 @@ export default class AuthForm extends Component {
       },
       body: JSON.stringify(this.state)
     };
-    fetch('/api/memories/sign-up', req)
+    fetch(`/api/memories/${path}`, req)
       .then(res => res.json())
       .then(result => {
         if (result.error) {
-          this.setState({ invalidLogin: true });
+          this.setState({ usernameTaken: true });
         } else {
-          window.location.hash = 'sign-in';
+          if (path === 'signUp') {
+            window.location.hash = '#addEntry';
+          } else if (result.token && result.user) {
+            this.props.onSignIn(result);
+          } else {
+            this.setState({ invalidLogin: true });
+          }
         }
       })
       .catch(err => {
         console.error(err);
-        alert('Bad request. Please try again later.');
       });
   }
 
-  usernameTaken() {
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSignIn() {
+    this.setState({ username: 'guest', password: 'guest' });
+  }
+
+  handleSignOut() {
+    this.setState({ username: '', password: '' });
+  }
+
+  handleUsernameTaken() {
     return (
       <div className="row column-full error-message">
         <p>Username is taken. Please try again.</p>
@@ -45,31 +79,33 @@ export default class AuthForm extends Component {
     );
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
+  handleNetworkError() {
+    return (
+      <div className="row column-full error-message">
+        <p>Bad request. Please try again later.</p>
+      </div>
+    );
+  }
+
+  handleInvalidLogin() {
+    return (
+      <div className="row column-full error-message">
+        <p>Incorrect Username or Password</p>
+      </div>
+    );
   }
 
   render() {
-    const demoUsername = value => {
-      if (window.location.hash === '#signIn') {
-        return this.state.username;
-      } else {
-        return value;
-      }
-    };
-    const demoPassword = value => {
-      if (window.location.hash === '#signIn') {
-        return this.state.password;
-      } else {
-        return value;
-      }
-    };
+    const { path } = this.props.route;
     const accountSubmitButton = (
-      (window.location.hash === 'sign-in')
+      (path === 'signIn')
         ? 'Sign In'
         : 'Register'
+    );
+    const haveAccount = (
+      (path === 'signIn')
+        ? "Don't have an account?"
+        : 'Already have an account?'
     );
     return (
       <>
@@ -77,30 +113,43 @@ export default class AuthForm extends Component {
           <div className="row column-full">
             <label htmlFor="username">Username:</label>
             <input
-              value={demoUsername(this.value)}
-              onChange={this.handleChange}
-              type="username"
               name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+              type="text"
               required
             />
           </div>
           <div className="row column-full">
             <label htmlFor="password">Password:</label>
             <input
-              value={demoPassword(this.value)}
+              name="password"
+              value={this.state.password}
               onChange={this.handleChange}
               type="password"
-              name="password"
               required
             />
           </div>
-          {this.state.invalidLogin ? this.usernameTaken() : null}
+          {(this.state.usernameTaken && path === 'signUp') && this.handleUsernameTaken()}
+          {this.state.networkError && this.handleNetworkError()}
+          {this.state.invalidLogin && this.handleInvalidLogin()}
           <div className="row column-full submit-button-wrapper">
             <button type="submit" className="auth-button">
               {accountSubmitButton}
             </button>
           </div>
         </form>
+        <div className="auth-page-divider">
+          <div className="divider"></div>
+          <p>or</p>
+          <div className="divider"></div>
+        </div>
+        <div className="auth-page-text">
+          <p>{haveAccount} {path === 'signIn'
+            ? <a onClick={this.handleSignOut} href='#signUp'>Sign Up</a>
+            : <a onClick={this.handleSignIn} href='#signIn'>Sign In</a>}
+          </p>
+        </div>
       </>
     );
   }

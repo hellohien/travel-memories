@@ -110,7 +110,8 @@ a {
 }
 
 .page-title,
-.auth-page-welcome {
+.auth-page-welcome,
+.auth-page-text p {
   text-align: center;
 }
 
