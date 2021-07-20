@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageTitle from '../components/page-title';
 import MemoryForm from '../components/memory-form';
 import MemoryMap from '../components/memory-map';
+import Redirect from '../components/redirect';
 
 export default class AddEntry extends Component {
   constructor(props) {
@@ -52,6 +53,8 @@ export default class AddEntry extends Component {
   }
 
   render() {
+    const { user } = this.props;
+    if (user === null) return <Redirect to="#signIn" />;
     return (
       <>
         <PageTitle title="Enter a Travel Memory"/>
