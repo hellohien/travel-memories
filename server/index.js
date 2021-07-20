@@ -74,14 +74,6 @@ app.post('/api/memories/:action', (req, res, next) => {
         res.status(201).json(user);
       })
       .catch(err => next(err));
-    // .catch(err => {
-    //   if (err.code === '23505') {
-    //     res.send(err.code);
-    //   } else {
-    //     next(err);
-    //   }
-
-    // });
   }
 });
 

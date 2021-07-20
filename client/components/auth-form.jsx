@@ -25,10 +25,6 @@ export default class AuthForm extends Component {
   handleSubmit(event) {
     const { path } = this.props.route;
     event.preventDefault();
-    if (!navigator.onLine) {
-      this.setState({ networkError: true });
-      return;
-    }
     const req = {
       method: 'POST',
       headers: {
@@ -39,20 +35,20 @@ export default class AuthForm extends Component {
     fetch(`/api/memories/${path}`, req)
       .then(res => res.json())
       .then(result => {
-        if (result.error) {
+        if (result.error && path === 'signUp') {
           this.setState({ usernameTaken: true });
-        } else {
-          if (path === 'signUp') {
-            window.location.hash = '#addEntry';
-          } else if (result.user && result.token) {
-            this.props.onSignIn(result);
-          } else {
-            this.setState({ invalidLogin: true });
-          }
+        } else if (result && path === 'signUp') {
+          window.location.hash = '#signIn';
+          this.setState({ username: '', password: '' });
+        } else if (result.error && path === 'signIn') {
+          this.setState({ invalidLogin: true });
+        } else if (result.user && result.token) {
+          this.props.onSignIn(result);
         }
       })
       .catch(err => {
         console.error(err);
+        this.setState({ networkError: true });
       });
   }
 
