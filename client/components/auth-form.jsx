@@ -60,11 +60,23 @@ export default class AuthForm extends Component {
   }
 
   handleSignIn() {
-    this.setState({ username: 'guest', password: 'guest' });
+    this.setState({
+      username: 'guest',
+      password: 'guest',
+      invalidLogin: false,
+      networkError: false,
+      usernameTaken: false
+    });
   }
 
   handleSignOut() {
-    this.setState({ username: '', password: '' });
+    this.setState({
+      username: '',
+      password: '',
+      invalidLogin: false,
+      networkError: false,
+      usernameTaken: false
+    });
   }
 
   handleUsernameTaken() {

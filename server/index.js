@@ -4,21 +4,14 @@ const errorMiddleware = require('./error-middleware');
 const staticMiddleware = require('./static-middleware');
 const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
-const pg = require('pg');
 const ClientError = require('./client-error');
 const app = express();
 const jsonMiddleware = express.json();
+const db = require('./db');
 
 app.use(staticMiddleware);
 
 app.use(jsonMiddleware);
-
-const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
 
 app.post('/api/memories/:action', (req, res, next) => {
   const action = req.params.action;
